@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+model League {
+  id           String         @id @default(uuid())
+  name         String
+  countryCode  String
+  leagueSeason LeagueSeason[]
+}
+
+model LeagueSeason {
+  id         String       @id @default(uuid())
+  year       Int
+  leagueId   String
+  league     League       @relation(fields: [leagueId], references: [id])
+  clubSeason ClubSeason[]
+}
+
+model Club {
+  id            String       @id @default(uuid())
+  name          String
+  logoURL       String
+  clubSeason    ClubSeason[]
+  player        Player[]
+  homeGames     Game[]       @relation(name: "homeClub")
+  awayGames     Game[]       @relation(name: "awayClub")
+  goalsScored   Goal[]       @relation(name: "clubScored")
+  goalsReceived Goal[]       @relation(name: "clubReceived")
+}
+
+model Game {
+  id                String   @id @default(uuid())
+  eventDate         DateTime
+  leagueSeasonId    String
+  round             Int
+  homeClubId        String
+  awayClubId        String
+  homeClubGoalCount Int?
+  awayClubGoalCount Int?
+  homeClub          Club     @relation(name: "homeClub", fields: [homeClubId], references: [id])
+  awayClub          Club     @relation(name: "awayClub", fields: [awayClubId], references: [id])
+  goals             Goal[]
+}
+
+model Goal {
+  id             String  @id @default(uuid())
+  minute         Int
+  plusMinute     Int
+  isOwnGoal      Boolean
+  isPenalty      Boolean
+  playerId       String
+  gameId         String
+  clubScoredId   String
+  clubReceivedId String
+  player         Player  @relation(fields: [playerId], references: [id])
+  game           Game    @relation(fields: [gameId], references: [id])
+  clubScored     Club    @relation(name: "clubScored", fields: [clubScoredId], references: [id])
+  clubReceived   Club    @relation(name: "clubReceived", fields: [clubReceivedId], references: [id])
+}
+
+model ClubSeason {
+  id                 String         @id @default(uuid())
+  gamesPlayedCount   Int
+  gamesWonCount      Int
+  gamesDrawnCount    Int
+  gamesLostCount     Int
+  goalsScoredCount   Int
+  goalsReceivedCount Int
+  clubId             String
+  leagueSeasonId     String
+  club               Club           @relation(fields: [clubId], references: [id])
+  leagueSeason       LeagueSeason   @relation(fields: [leagueSeasonId], references: [id])
+  playerSeasons      PlayerSeason[]
+}
+
+model Player {
+  id            String         @id @default(uuid())
+  firstName     String
+  lastName      String
+  dateOfBirth   DateTime
+  position      String
+  pictureURL    String
+  currentClubId String
+  currentClub   Club           @relation(fields: [currentClubId], references: [id])
+  goals         Goal[]
+  playerSeasons PlayerSeason[]
+}
+
+model PlayerSeason {
+  id           String     @id @default(uuid())
+  playerId     String
+  clubSeasonId String
+  player       Player     @relation(fields: [playerId], references: [id])
+  clubSeason   ClubSeason @relation(fields: [clubSeasonId], references: [id])
+}
