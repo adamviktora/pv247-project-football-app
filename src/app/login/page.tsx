@@ -1,3 +1,3 @@
 export default function AdminLogin() {
-  return <>Admin Login</>;
+  return <>Admin Login</>
 }

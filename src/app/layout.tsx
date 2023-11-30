@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Link from "next/link";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import Link from 'next/link'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Football Results App",
-  description: "Application for viewing and managing football results.",
-};
+  title: 'Football Results App',
+  description: 'Application for viewing and managing football results.',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" data-theme="mytheme">
@@ -40,5 +40,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }
