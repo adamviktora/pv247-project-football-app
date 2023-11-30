@@ -25,7 +25,7 @@ export default function RootLayout({
               className="text-3xl font-bold pl-8 hover:text-gray-300"
               href="/"
             >
-              Football Resluts
+              Football Results
             </Link>
           </header>
           <main className="mb-auto m-full">{children}</main>
