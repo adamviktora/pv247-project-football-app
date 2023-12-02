@@ -10,7 +10,7 @@ const SeasonLeaderboard = async ({
   // const clubs = await getClubSeasonsByLeagueSeasonId("");
   const clubSeasons: ClubSeasonWithClub[] = [
     {
-      club: { id: "abc1", logoURL: "TBD", name: "Chelsea" },
+      club: { id: "abc1", logoURL: "TBD", name: "Chelsea", countryCode: "ENG" },
       id: "TBD",
       leagueSeasonId: "TBD",
       clubId: "abc1",
@@ -20,9 +20,11 @@ const SeasonLeaderboard = async ({
       gamesLostCount: 4,
       goalsScoredCount: 92,
       goalsReceivedCount: 31,
+      order: 1,
+      points:85,
     },
     {
-      club: { id: "abc2", logoURL: "TBD", name: "Arsenal" },
+      club: { id: "abc2", logoURL: "TBD", name: "Arsenal", countryCode: "EN" },
       id: "TBD",
       leagueSeasonId: "TBD",
       clubId: "abc2",
@@ -32,6 +34,8 @@ const SeasonLeaderboard = async ({
       gamesLostCount: 5,
       goalsScoredCount: 83,
       goalsReceivedCount: 42,
+      order: 2,
+      points:81,
     },
   ];
 
@@ -61,7 +65,6 @@ const SeasonLeaderboard = async ({
             {clubSeasons.map((clubSeason, index) => (
               <LeaderboardRow
                 key={index + 1}
-                order={index + 1}
                 clubSeason={clubSeason}
               />
             ))}
