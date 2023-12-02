@@ -18,3 +18,7 @@ export type LeagueCreation = z.infer<typeof LeagueSchema>;
 export type LeagueSeasonCreation = z.infer<typeof LeagueSeasonSchema>;
 export type PlayerCreation = z.infer<typeof PlayerSchema>;
 export type PlayerSeasonCreation = z.infer<typeof PlayerSeasonSchema>;
+
+export type GameWithGoalsCreation = GameCreation & {
+  goals: Omit<GoalCreation, "gameId">[];
+};

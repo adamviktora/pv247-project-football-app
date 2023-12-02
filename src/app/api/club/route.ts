@@ -1,19 +1,22 @@
+import { addClub, getClubs, getClubsByLeagueSeasonId } from "@/server/club";
 import { ClubCreation } from "@/types/creationTypes";
-import { Club, PrismaClient } from "@prisma/client";
+import { NextRequest } from "next/server";
 
-const prisma = new PrismaClient();
+export async function GET(req: NextRequest) {
+  const leagueSeasonId = req.nextUrl.searchParams.get("leagueSeasonId");
 
-export async function GET() {
-  const clubs: Club[] = await prisma.club.findMany();
-  return clubs;
+  const clubs =
+    leagueSeasonId === null
+      ? await getClubs()
+      : await getClubsByLeagueSeasonId(leagueSeasonId);
+
+  return Response.json(clubs);
 }
 
-export async function POST(request: Request) {
-  const clubCreation = (await request.json()) as ClubCreation;
+export async function POST(req: NextRequest) {
+  const club = (await req.json()) as ClubCreation;
 
-  const newClub = await prisma.club.create({
-    data: clubCreation,
-  });
+  const newClub = await addClub(club);
 
   return Response.json(newClub);
 }

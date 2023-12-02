@@ -13,6 +13,7 @@ export const LeagueSeasonSchema = z.object({
 export const ClubSchema = z.object({
   name: z.string(),
   logoURL: z.string(),
+  countryCode: z.string(),
 });
 
 export const GameSchema = z.object({
@@ -37,6 +38,8 @@ export const GoalSchema = z.object({
 });
 
 export const ClubSeasonSchema = z.object({
+  order: z.number().min(1),
+  points: z.number(),
   gamesPlayedCount: z.number(),
   gamesWonCount: z.number(),
   gamesDrawnCount: z.number(),
@@ -52,6 +55,7 @@ export const PlayerSchema = z.object({
   lastName: z.string(),
   dateOfBirth: z.date(),
   position: z.string(),
+  dressNumber: z.number().min(1).max(99),
   pictureURL: z.string(),
   currentClubId: z.string(), // Foreign key
 });

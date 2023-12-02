@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Backend
+
+- `src/server` folder is a repository layer, it is using Prisma to directly access a database. Should be accessed from server components
+- `src/app/api` folder is a REST controller layer defining API endpoints and methods. It accesses the repository layer. Should be accessed from client components.
+- `src/fetch-helper/CRUD.ts` is a helper for client components to easily `add` entities without having to write fetch with content-type json etc. It calls fetch on an API endpoint internally.
+
 ## Getting Started
 
 First, run the development server:

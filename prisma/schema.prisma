@@ -18,19 +18,20 @@ model League {
 }
 
 model LeagueSeason {
-  id         String       @id @default(uuid())
-  year       Int
-  leagueId   String
-  league     League       @relation(fields: [leagueId], references: [id])
-  clubSeason ClubSeason[]
+  id          String       @id @default(uuid())
+  year        Int
+  leagueId    String
+  league      League       @relation(fields: [leagueId], references: [id])
+  clubSeasons ClubSeason[]
 }
 
 model Club {
   id            String       @id @default(uuid())
   name          String
   logoURL       String
-  clubSeason    ClubSeason[]
-  player        Player[]
+  countryCode   String
+  clubSeasons   ClubSeason[]
+  players       Player[]
   homeGames     Game[]       @relation(name: "homeClub")
   awayGames     Game[]       @relation(name: "awayClub")
   goalsScored   Goal[]       @relation(name: "clubScored")
@@ -69,6 +70,8 @@ model Goal {
 
 model ClubSeason {
   id                 String         @id @default(uuid())
+  order              Int
+  points             Int
   gamesPlayedCount   Int
   gamesWonCount      Int
   gamesDrawnCount    Int
@@ -88,6 +91,7 @@ model Player {
   lastName      String
   dateOfBirth   DateTime
   position      String
+  dressNumber   Int
   pictureURL    String
   currentClubId String
   currentClub   Club           @relation(fields: [currentClubId], references: [id])
@@ -99,6 +103,7 @@ model PlayerSeason {
   id           String     @id @default(uuid())
   playerId     String
   clubSeasonId String
+  goalCount    Int
   player       Player     @relation(fields: [playerId], references: [id])
   clubSeason   ClubSeason @relation(fields: [clubSeasonId], references: [id])
 }
