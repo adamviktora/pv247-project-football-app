@@ -3,7 +3,7 @@ import { Club, ClubSeason, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-type ClubSeasonWithClub = ClubSeason & { club: Club };
+export type ClubSeasonWithClub = ClubSeason & { club: Club };
 
 export const getClubSeasonsByLeagueSeasonId = async (
   leagueSeasonId: string,
