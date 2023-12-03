@@ -1,10 +1,10 @@
 export default function AdminLogin() {
   return (
     <div>
-      <div className="w-96 bg-secondary-color rounded-xl m-auto">
+      <div className="m-auto w-96 rounded-xl bg-secondary-color">
         <form>
-          <div className="flex flex-col px-10 py-4 gap-2">
-            <h2 className="self-center text-2xl font-semibold my-3">
+          <div className="flex flex-col gap-2 px-10 py-4">
+            <h2 className="my-3 self-center text-2xl font-semibold">
               Admin login
             </h2>
             <div className="flex flex-col">
@@ -15,7 +15,7 @@ export default function AdminLogin() {
               <label htmlFor="admin-password">Password</label>
               <input id="admin-password" type="text" />
             </div>
-            <button className="mt-6 mb-3 btn btn-primary text-white">
+            <button className="btn btn-primary mb-3 mt-6 text-white">
               Login
             </button>
           </div>

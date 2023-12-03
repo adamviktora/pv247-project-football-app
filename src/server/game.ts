@@ -5,7 +5,7 @@ import { addGoal } from "./goal";
 const prisma = new PrismaClient();
 
 export type GameWithClubs = Game & { homeClub: Club; awayClub: Club };
-type GameDetail = GameWithClubs & {
+export type GameDetail = GameWithClubs & {
   goals: (Goal & {
     player: { id: string; firstName: string; lastName: string };
   })[];
@@ -15,8 +15,7 @@ export const getGamesByLeagueSeasonId = async (
   leagueSeasonId: string,
   clubId?: string,
 ) => {
-  let games: GameWithClubs[];
-  games = await prisma.game.findMany({
+  const games: GameWithClubs[] = await prisma.game.findMany({
     where: {
       leagueSeasonId: leagueSeasonId,
       OR: clubId ? [{ homeClubId: clubId }, { awayClubId: clubId }] : undefined,

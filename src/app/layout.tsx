@@ -19,19 +19,19 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="mytheme">
       <body className={inter.className}>
-        <div className="flex flex-col h-screen justify-between"> 
-          <header className="bg-primary-color h-24 w-full text-white flex items-center">
+        <div className="flex h-screen flex-col justify-between">
+          <header className="flex h-24 w-full items-center bg-primary-color text-white">
             <Link
-              className="text-3xl font-bold pl-8 hover:text-gray-300"
+              className="pl-8 text-3xl font-bold hover:text-gray-300"
               href="/"
             >
               Football Results
             </Link>
           </header>
-          <main className="mb-auto m-full">{children}</main>
-          <footer className="bg-primary-color h-12 w-full flex justify-end items-end flex-shrink-0 text-white px-4 space-x-12">
+          <main className="m-full mb-auto">{children}</main>
+          <footer className="flex h-12 w-full flex-shrink-0 items-end justify-end space-x-12 bg-primary-color px-4 text-white">
             <Link
-              className="my-auto px-8 py-1 btn btn-sm btn-secondary"
+              className="btn btn-secondary btn-sm my-auto px-8 py-1"
               href="/login"
             >
               Admin

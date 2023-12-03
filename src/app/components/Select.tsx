@@ -19,7 +19,7 @@ const Select = ({
   return (
     <select
       id={id}
-      className="block w-full h-9 m-auto p-2 text-sm text-primary-color border border-primary-color rounded-lg bg-secondary-color"
+      className="m-auto block h-9 w-full rounded-lg border border-primary-color bg-secondary-color p-2 text-sm text-primary-color"
       onChange={onChange}
       value={selectedValue}
     >

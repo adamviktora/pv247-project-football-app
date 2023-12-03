@@ -27,8 +27,8 @@ const TopBar = ({
   const leaugeAndSeason = `leagueId=${leagueId}&seasonId=${seasonId}`;
 
   return (
-    <div className="w-full bg-secondary-color h-12 flex flex-row justify-between px-12 items-center">
-      <div className="w-72 flex flex-row ">
+    <div className="flex h-12 w-full flex-row items-center justify-between bg-secondary-color px-12">
+      <div className="flex w-72 flex-row ">
         <ReturnButton />
         {pathname !== "/club" && (
           <Select

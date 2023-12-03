@@ -21,7 +21,7 @@ const Home = async ({
   const clubId = searchParams.clubId ?? (clubs.length ? "all" : undefined);
 
   return (
-    <div className="flex flex-col space-y-4 w-80 m-auto">
+    <div className="m-auto flex w-80 flex-col space-y-4">
       <MainMenu
         leagueOptions={<LeagueOptions leagues={leagues} />}
         seasonOptions={<SeasonOptions seasons={seasons} />}
