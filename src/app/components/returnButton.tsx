@@ -3,7 +3,7 @@ import Link from "next/link";
 const ReturnButton = () => {
   return (
     <Link
-      className="text-primary-color  rounded-full bg-secondary-color w-12 h-12 flex flex-row m-2"
+      className="text-primary-color rounded-full bg-secondary-color w-12 h-12 flex flex-row m-2"
       href="/"
     >
       <svg

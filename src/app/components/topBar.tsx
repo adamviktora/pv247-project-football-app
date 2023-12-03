@@ -1,49 +1,83 @@
-import Link from "next/link";
-import ReturnButton from "./returnButton";
-import SeasonSelect from "./seasonSelect";
-import TeamSelect from "./teamSelect";
+"use client";
 
-export enum ParentComponent {
-  Leaderboard,
-  Matches,
-  Team,
-}
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { ReactNode } from "react";
+import Select from "./Select";
+import ReturnButton from "./returnButton";
+
+type TopBarProps = {
+  leagueId?: string;
+  seasonId?: string;
+  clubId?: string;
+  seasonOptions?: ReactNode;
+  clubOptions?: ReactNode;
+};
 
 const TopBar = ({
-  parentComponent,
   seasonId,
-}: {
-  parentComponent: ParentComponent;
-  seasonId?: string;
-}) => {
+  leagueId,
+  clubId,
+  seasonOptions,
+  clubOptions,
+}: TopBarProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const leaugeAndSeason = `leagueId=${leagueId}&seasonId=${seasonId}`;
+
   return (
     <div className="w-full bg-secondary-color h-12 flex flex-row justify-between px-12 items-center">
       <div className="w-72 flex flex-row ">
         <ReturnButton />
-        {parentComponent != ParentComponent.Team && <SeasonSelect />}
+        {pathname !== "/club" && (
+          <Select
+            selectedValue={seasonId}
+            onChange={(e) => {
+              router.replace(
+                `${pathname}?leagueId=${leagueId}&seasonId=${e.target.value}`,
+              );
+            }}
+          >
+            {seasonOptions}
+          </Select>
+        )}
       </div>
-      {parentComponent != ParentComponent.Team && (
+      {pathname !== "/club" && (
         <div className="flex flex-row space-x-4">
           <Link
             className={`my-auto  py-1 text-primary-color ${
-              parentComponent == ParentComponent.Leaderboard ? "underline" : ""
+              pathname === "/leaderboard" ? "underline" : ""
             } hover:underline `}
-            href={`/leaderboard/${seasonId}`}
+            href={`/leaderboard?${leaugeAndSeason}`}
           >
             Leaderboard
           </Link>
           <Link
             className={`my-auto py-1 text-primary-color ${
-              parentComponent == ParentComponent.Matches ? "underline" : ""
+              pathname === "/games" ? "underline" : ""
             } hover:underline `}
-            href={`/matches/${seasonId}`}
+            href={
+              `/games?${leaugeAndSeason}` + (clubId ? `&clubId=${clubId}` : "")
+            }
           >
-            Matches
+            Games
           </Link>
         </div>
       )}
       <div className="w-72">
-        {parentComponent != ParentComponent.Leaderboard && <TeamSelect />}
+        {pathname !== "/leaderboard" && (
+          <Select
+            selectedValue={clubId}
+            onChange={(e) => {
+              router.replace(
+                `${pathname}?${leaugeAndSeason}&clubId=${e.target.value}`,
+              );
+            }}
+          >
+            {clubOptions}
+          </Select>
+        )}
       </div>
     </div>
   );

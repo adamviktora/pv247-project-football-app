@@ -1,73 +1,57 @@
-"use client";
+import { getClubsByLeagueSeasonId } from "@/server/club";
+import { getLeagues } from "@/server/league";
+import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
+import MainMenu from "./components/MainMenu";
 
-import Link from "next/link";
-import { useState } from "react";
-export default function Home() {
-  const [selectedSeason, setSelectedSeason] = useState("2023");
-  const [selectedClub, setselectedClub] = useState("Chelsea");
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: { leagueId: string; seasonId: string; clubId: string };
+}) => {
+  const leagues = await getLeagues();
+  const leagueId = searchParams.leagueId ?? leagues[0]?.id;
+
+  const seasons = leagueId ? await getLeagueSeasonsByLeagueId(leagueId) : [];
+  const seasonId = searchParams.seasonId ?? seasons[0]?.id;
+
+  const clubs = seasonId ? await getClubsByLeagueSeasonId(seasonId) : [];
+  const clubId = searchParams.clubId ?? (clubs.length ? "all" : undefined);
+
+  const leagueOptions = leagues.map((league) => (
+    <option key={league.id} value={league.id}>
+      {league.name}
+    </option>
+  ));
+
+  const seasonOptions = seasons.map((season) => (
+    <option key={season.id} value={season.id}>
+      {season.year}/{(season.year + 1) % 100}
+    </option>
+  ));
+
+  const clubOptions = [
+    <option key={0} value={"all"}>
+      All clubs
+    </option>,
+    ...clubs.map((club) => (
+      <option key={club.id} value={club.id}>
+        {club.name}
+      </option>
+    )),
+  ];
 
   return (
     <div className="flex flex-col space-y-4 w-80 m-auto">
-      <div>
-        <label
-          htmlFor="seasonSelect"
-          className="block mb-2 text-sm font-medium text-primary-color"
-        >
-          Season
-        </label>
-        <select
-          onChange={(e) => {
-            setSelectedSeason(e.target.value);
-          }}
-          id="seasonSelect"
-          className="block w-full p-2 text-sm text-primary-color border border-primary-color rounded-lg bg-secondary-color"
-        >
-          <option value="2021">2021/2022</option>
-          <option value="2022">2022/2023</option>
-          <option selected value="2023">
-            2023/2024
-          </option>
-        </select>
-      </div>
-      <Link
-        className="my-auto px-8 py-1 btn btn-sm btn-primary text-white"
-        href={`/leaderboard/${selectedSeason}`}
-      >
-        Show leaderboard
-      </Link>
-      <Link
-        className="my-auto px-8 py-1 btn btn-sm btn-primary text-white"
-        href={`/matches/${selectedSeason}`}
-      >
-        Show matches
-      </Link>
-      <div>
-        <label
-          htmlFor="clubSelect"
-          className="block mb-2 text-sm font-medium text-primary-color "
-        >
-          Club
-        </label>
-        <select
-          onChange={(e) => {
-            setselectedClub(e.target.value);
-          }}
-          id="clubSelect"
-          className="block w-full p-2 text-sm text-primary-color border border-primary-color rounded-lg bg-secondary-color"
-        >
-          <option value="chelsea">Chelsea</option>
-          <option value="arsenal">Arsenal</option>
-          <option selected value="liverpool">
-            Liverpool
-          </option>
-        </select>
-      </div>
-      <Link
-        className="my-auto px-8 py-1 btn btn-sm btn-primary text-white"
-        href={`/club/${selectedClub}`}
-      >
-        Show club details
-      </Link>
+      <MainMenu
+        leagueOptions={leagueOptions}
+        seasonOptions={seasonOptions}
+        clubOptions={clubOptions}
+        leagueId={leagueId}
+        seasonId={seasonId}
+        clubId={clubId}
+      />
     </div>
   );
-}
+};
+
+export default Home;
