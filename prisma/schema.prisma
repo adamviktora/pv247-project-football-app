@@ -55,7 +55,7 @@ model Game {
 model Goal {
   id             String  @id @default(uuid())
   minute         Int
-  plusMinute     Int
+  plusMinute     Int?
   isOwnGoal      Boolean
   isPenalty      Boolean
   playerId       String

@@ -15,6 +15,9 @@ export const getClubSeasonsByLeagueSeasonId = async (
     include: {
       club: true,
     },
+    orderBy: {
+      order: "asc",
+    },
   });
   return clubSeasons;
 };
