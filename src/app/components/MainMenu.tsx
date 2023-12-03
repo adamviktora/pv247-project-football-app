@@ -64,11 +64,15 @@ const MainMenu = ({
           {seasonOptions}
         </Select>
       </div>
-      <LinkButton href={`/leaderboard/${selectedSeasonId}`}>
+      <LinkButton
+        href={`/leaderboard?leagueId=${selectedLeagueId}&seasonId=${selectedSeasonId}`}
+      >
         Show leaderboard
       </LinkButton>
-      <LinkButton href={`/matches/${selectedSeasonId}`}>
-        Show matches
+      <LinkButton
+        href={`/games?leagueId=${selectedLeagueId}&seasonId=${selectedSeasonId}`}
+      >
+        Show games
       </LinkButton>
       <div>
         <Label htmlFor="clubSelect">Club</Label>

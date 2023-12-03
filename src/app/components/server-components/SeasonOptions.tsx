@@ -1,11 +1,11 @@
-import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
+import { LeagueSeason } from "@prisma/client";
 
-const SeasonOptions = async ({
-  searchParams,
-}: {
-  searchParams: { leagueId: string };
-}) =>
-  (await getLeagueSeasonsByLeagueId(searchParams.leagueId)).map((season) => (
+type SeasonOptionsProps = {
+  seasons: LeagueSeason[];
+};
+
+const SeasonOptions = ({ seasons }: SeasonOptionsProps) =>
+  seasons.map((season) => (
     <option key={season.id} value={season.id}>
       {season.year}/{(season.year + 1) % 100}
     </option>

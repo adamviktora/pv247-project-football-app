@@ -1,11 +1,13 @@
 import { LeaderboardRow } from "@/app/components/leaderboardRow";
-import TopBar, { ParentComponent } from "@/app/components/topBar";
+import TopBar from "@/app/components/topBar";
 import { ClubSeasonWithClub } from "@/server/clubSeason";
+import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
+import SeasonOptions from "../components/server-components/SeasonOptions";
 
 const SeasonLeaderboard = async ({
-  params,
+  searchParams,
 }: {
-  params: { seasonId: string };
+  searchParams: { leagueId: string; seasonId: string };
 }) => {
   // const clubs = await getClubSeasonsByLeagueSeasonId("");
   const clubSeasons: ClubSeasonWithClub[] = [
@@ -21,7 +23,7 @@ const SeasonLeaderboard = async ({
       goalsScoredCount: 92,
       goalsReceivedCount: 31,
       order: 1,
-      points:85,
+      points: 85,
     },
     {
       club: { id: "abc2", logoURL: "TBD", name: "Arsenal", countryCode: "EN" },
@@ -35,15 +37,18 @@ const SeasonLeaderboard = async ({
       goalsScoredCount: 83,
       goalsReceivedCount: 42,
       order: 2,
-      points:81,
+      points: 81,
     },
   ];
+
+  const seasons = await getLeagueSeasonsByLeagueId(searchParams.leagueId);
 
   return (
     <div className="w-full flex flex-col">
       <TopBar
-        parentComponent={ParentComponent.Leaderboard}
-        seasonId={params.seasonId}
+        leagueId={searchParams.leagueId}
+        seasonId={searchParams.seasonId}
+        seasonOptions={<SeasonOptions seasons={seasons} />}
       />
       <div className="overflow-x-auto shadow-md sm:rounded-lg mx-auto w-3/4 my-9 max-h-96">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
@@ -63,10 +68,7 @@ const SeasonLeaderboard = async ({
           </thead>
           <tbody className="text-black">
             {clubSeasons.map((clubSeason, index) => (
-              <LeaderboardRow
-                key={index + 1}
-                clubSeason={clubSeason}
-              />
+              <LeaderboardRow key={index + 1} clubSeason={clubSeason} />
             ))}
           </tbody>
         </table>
@@ -75,10 +77,8 @@ const SeasonLeaderboard = async ({
   );
 };
 
-const HeaderCell = ({ content } : { content : string}) => {
-  return (
-    <th className="px-6 text-center">{content}</th>
-  );
+const HeaderCell = ({ content }: { content: string }) => {
+  return <th className="px-6 text-center">{content}</th>;
 };
 
 export default SeasonLeaderboard;

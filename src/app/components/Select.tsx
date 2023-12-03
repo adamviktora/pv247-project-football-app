@@ -1,7 +1,7 @@
 import { ChangeEvent, PropsWithChildren } from "react";
 
 type SelectProps = {
-  id: string;
+  id?: string;
   selectedValue?: string;
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 };
