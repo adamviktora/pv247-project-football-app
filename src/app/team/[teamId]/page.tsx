@@ -1,4 +1,3 @@
-import ReturnButton from "@/app/components/returnButton";
 import TopBar, { ParentComponent } from "@/app/components/topBar";
 
 const TeamDetail = ({ params }: { params: { teamId: string } }) => {

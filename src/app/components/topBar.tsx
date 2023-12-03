@@ -1,7 +1,5 @@
 import Link from "next/link";
 import ReturnButton from "./returnButton";
-import SeasonSelect from "./seasonSelect";
-import TeamSelect from "./teamSelect";
 
 export enum ParentComponent {
   Leaderboard,
