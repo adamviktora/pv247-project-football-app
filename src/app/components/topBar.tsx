@@ -10,7 +10,7 @@ type TopBarProps = {
   leagueId?: string;
   seasonId?: string;
   clubId?: string;
-  seasonOptions: ReactNode;
+  seasonOptions?: ReactNode;
   clubOptions?: ReactNode;
 };
 
