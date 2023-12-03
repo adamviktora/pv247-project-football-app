@@ -21,8 +21,8 @@ const GameDetail = async ({ params }: { params: { gameId: string } }) => {
 
   return (
     <div className="relative w-full">
-      <ReturnButton />
-      <div className="m-auto flex w-10/12 flex-col md:w-[40rem]">
+      <ReturnButton standalone />
+      <div className="m-auto flex w-10/12 flex-col pt-8 md:w-[40rem]">
         <div className="flex justify-around pb-6">
           <div>Round {game.round}</div>
           <div>{formatDate(game.eventDate)}</div>
