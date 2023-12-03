@@ -4,7 +4,7 @@ import { addGoal } from "./goal";
 
 const prisma = new PrismaClient();
 
-type GameWithClubs = Game & { homeClub: Club; awayClub: Club };
+export type GameWithClubs = Game & { homeClub: Club; awayClub: Club };
 type GameDetail = GameWithClubs & {
   goals: (Goal & {
     player: { id: string; firstName: string; lastName: string };
