@@ -28,7 +28,7 @@ export const GameSchema = z.object({
 
 export const GoalSchema = z.object({
   minute: z.number(),
-  plusMinute: z.number(),
+  plusMinute: z.number().nullable(),
   isOwnGoal: z.boolean(),
   isPenalty: z.boolean(),
   playerId: z.string(), // Foreign key

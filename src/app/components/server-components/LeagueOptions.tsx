@@ -1,7 +1,11 @@
-import { getLeagues } from "@/server/league";
+import { League } from "@prisma/client";
 
-const LeagueOptions = async () =>
-  (await getLeagues()).map((league) => (
+type LeagueOptionsProps = {
+  leagues: League[];
+};
+
+const LeagueOptions = ({ leagues }: LeagueOptionsProps) =>
+  leagues.map((league) => (
     <option key={league.id} value={league.id}>
       {league.name}
     </option>

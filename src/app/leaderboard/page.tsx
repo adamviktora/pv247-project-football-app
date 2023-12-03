@@ -1,6 +1,6 @@
 import { LeaderboardRow } from "@/app/components/leaderboardRow";
 import TopBar from "@/app/components/topBar";
-import { ClubSeasonWithClub } from "@/server/clubSeason";
+import { getClubSeasonsByLeagueSeasonId } from "@/server/clubSeason";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
 import SeasonOptions from "../components/server-components/SeasonOptions";
 
@@ -9,38 +9,9 @@ const SeasonLeaderboard = async ({
 }: {
   searchParams: { leagueId: string; seasonId: string };
 }) => {
-  // const clubs = await getClubSeasonsByLeagueSeasonId("");
-  const clubSeasons: ClubSeasonWithClub[] = [
-    {
-      club: { id: "abc1", logoURL: "TBD", name: "Chelsea", countryCode: "ENG" },
-      id: "TBD",
-      leagueSeasonId: "TBD",
-      clubId: "abc1",
-      gamesPlayedCount: 35,
-      gamesWonCount: 27,
-      gamesDrawnCount: 4,
-      gamesLostCount: 4,
-      goalsScoredCount: 92,
-      goalsReceivedCount: 31,
-      order: 1,
-      points: 85,
-    },
-    {
-      club: { id: "abc2", logoURL: "TBD", name: "Arsenal", countryCode: "EN" },
-      id: "TBD",
-      leagueSeasonId: "TBD",
-      clubId: "abc2",
-      gamesPlayedCount: 36,
-      gamesWonCount: 25,
-      gamesDrawnCount: 6,
-      gamesLostCount: 5,
-      goalsScoredCount: 83,
-      goalsReceivedCount: 42,
-      order: 2,
-      points: 81,
-    },
-  ];
-
+  const clubSeasons = await getClubSeasonsByLeagueSeasonId(
+    searchParams.seasonId,
+  );
   const seasons = await getLeagueSeasonsByLeagueId(searchParams.leagueId);
 
   return (

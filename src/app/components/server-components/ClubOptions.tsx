@@ -1,14 +1,18 @@
-import { getClubsByLeagueSeasonId } from "@/server/club";
+import { Club } from "@prisma/client";
 
-const ClubOptions = async ({
-  searchParams,
-}: {
-  searchParams: { seasonId: string };
-}) =>
-  (await getClubsByLeagueSeasonId(searchParams.seasonId)).map((club) => (
+type ClubOptionsProps = {
+  clubs: Club[];
+};
+
+const ClubOptions = ({ clubs }: ClubOptionsProps) => [
+  <option key={0} value={"all"}>
+    All clubs
+  </option>,
+  ...clubs.map((club) => (
     <option key={club.id} value={club.id}>
       {club.name}
     </option>
-  ));
+  )),
+];
 
 export default ClubOptions;

@@ -70,7 +70,7 @@ const MainMenu = ({
         Show leaderboard
       </LinkButton>
       <LinkButton
-        href={`/games?leagueId=${selectedLeagueId}&seasonId=${selectedSeasonId}`}
+        href={`/games?leagueId=${selectedLeagueId}&seasonId=${selectedSeasonId}&clubId=${selectedClubId}`}
       >
         Show games
       </LinkButton>
@@ -78,7 +78,7 @@ const MainMenu = ({
         <Label htmlFor="clubSelect">Club</Label>
         <Select
           id="clubSelect"
-          selectedValue={clubIdQueryParam ?? undefined}
+          selectedValue={selectedClubId}
           onChange={(e) => {
             setClubIdQueryParam(e.target.value);
           }}
