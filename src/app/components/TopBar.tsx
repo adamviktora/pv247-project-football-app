@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import Select from "./Select";
-import ReturnButton from "./returnButton";
+import ReturnButton from "./ReturnButton";
 
 type TopBarProps = {
   leagueId?: string;

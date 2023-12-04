@@ -1,10 +1,7 @@
 "use client";
 
-import { GameWithClubs } from "@/server/game";
-import { formatDate } from "@/utils/date";
 import { Club } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export const ClubRow = ({
   club,

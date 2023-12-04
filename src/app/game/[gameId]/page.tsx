@@ -1,4 +1,4 @@
-import ReturnButton from "@/app/components/returnButton";
+import ReturnButton from "@/app/components/ReturnButton";
 import { getGameDetailById } from "@/server/game";
 import { formatDate } from "@/utils/date";
 import { Club } from "@prisma/client";

@@ -3,7 +3,6 @@
 import { GameWithClubs } from "@/server/game";
 import { formatDate } from "@/utils/date";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export const GameRow = ({ game }: { game: GameWithClubs }) => {
   const router = useRouter();

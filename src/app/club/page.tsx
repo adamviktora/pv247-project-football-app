@@ -1,4 +1,4 @@
-import TopBar from "@/app/components/topBar";
+import TopBar from "@/app/components/TopBar";
 import SeasonOptions from "../components/server-components/SeasonOptions";
 import ClubOptions from "../components/server-components/ClubOptions";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";

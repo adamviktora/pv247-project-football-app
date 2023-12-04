@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { PropsWithChildren } from "react";
 import { getClubsByLeagueSeasonId } from "@/server/club";
-import { ClubRow } from "./clubRow";
+import { ClubRow } from "./ClubRow";
 
 const SeasonClubs = async ({
   seasonId,

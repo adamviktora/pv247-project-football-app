@@ -1,5 +1,5 @@
-import { LeaderboardRow } from "@/app/components/leaderboardRow";
-import TopBar from "@/app/components/topBar";
+import { LeaderboardRow } from "@/app/components/LeaderboardRow";
+import TopBar from "@/app/components/TopBar";
 import { getClubSeasonsByLeagueSeasonId } from "@/server/clubSeason";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
 import SeasonOptions from "../components/server-components/SeasonOptions";

@@ -1,8 +1,5 @@
-import { GameWithClubs } from "@/server/game";
 import { getPlayersByClub } from "@/server/player";
-import { formatDate } from "@/utils/date";
 import { Club } from "@prisma/client";
-import { useRouter } from "next/navigation";
 import { PlayerPanel } from "./PlayerPanel";
 
 export const ClubView = async ({ club }: { club: Club }) => {
