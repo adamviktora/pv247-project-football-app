@@ -30,18 +30,16 @@ const TopBar = ({
     <div className="flex h-12 w-full flex-row items-center justify-between bg-secondary-color px-12">
       <div className="flex w-72 flex-row ">
         <ReturnButton />
-        {pathname !== "/club" && (
           <Select
             selectedValue={seasonId}
             onChange={(e) => {
               router.replace(
-                `${pathname}?leagueId=${leagueId}&seasonId=${e.target.value}`,
+                `${pathname}?leagueId=${leagueId}&seasonId=${e.target.value}&clubId=all`,
               );
             }}
           >
             {seasonOptions}
           </Select>
-        )}
       </div>
       {pathname !== "/club" && (
         <div className="flex flex-row space-x-4">

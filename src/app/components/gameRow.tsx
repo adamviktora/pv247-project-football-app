@@ -8,13 +8,13 @@ import { useEffect } from "react";
 export const GameRow = ({ game }: { game: GameWithClubs }) => {
   const router = useRouter();
 
-  const handleClick = () => {
+  const openGame = () => {
     router.push(`/game/${game.id}`);
   };
 
   return (
     <tr className="h-12 border-b odd:bg-white even:bg-gray-200 hover:bg-gray-400" 
-    onClick={handleClick}>
+    onClick={openGame}>
         <td className="whitespace-nowrap pl-16 text-right font-semibold">
           {game.homeClub.name}
         </td>

@@ -39,7 +39,7 @@ const SeasonLeaderboard = async ({
           </thead>
           <tbody className="text-black">
             {clubSeasons.map((clubSeason, index) => (
-              <LeaderboardRow key={index + 1} clubSeason={clubSeason} />
+              <LeaderboardRow key={index + 1} clubSeason={clubSeason} leagueId={searchParams.leagueId} seasonId={searchParams.seasonId}  />
             ))}
           </tbody>
         </table>
