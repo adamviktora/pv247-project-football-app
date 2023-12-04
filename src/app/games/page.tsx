@@ -1,10 +1,10 @@
 import TopBar from "@/app/components/topBar";
 import { getClubsByLeagueSeasonId } from "@/server/club";
+import { GameWithClubs } from "@/server/game";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
+import { GameRow } from "../components/gameRow";
 import ClubOptions from "../components/server-components/ClubOptions";
 import SeasonOptions from "../components/server-components/SeasonOptions";
-import { GameWithClubs } from "@/server/game";
-import { GameRow } from "../components/gameRow";
 
 const SeasonGames = async ({
   searchParams,
@@ -107,7 +107,7 @@ const SeasonGames = async ({
   ];
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="flex w-full flex-col">
       <TopBar
         leagueId={searchParams.leagueId}
         seasonId={searchParams.seasonId}
@@ -115,9 +115,9 @@ const SeasonGames = async ({
         seasonOptions={<SeasonOptions seasons={seasons} />}
         clubOptions={<ClubOptions clubs={clubs} />}
       />
-      <span className="mx-auto w-1/2 mt-9">Round TBD/TBD</span>
-      <div className="overflow-x-auto shadow-md sm:rounded-lg mx-auto w-1/2 mb-9 max-h-96">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+      <span className="mx-auto mt-9 w-1/2">Round TBD/TBD</span>
+      <div className="mx-auto mb-9 max-h-96 w-1/2 overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400 ">
           <tbody className="text-black">
             {games.map((game, index) => (
               <GameRow key={index + 1} game={game} />

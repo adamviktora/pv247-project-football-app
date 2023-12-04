@@ -7,7 +7,7 @@ type LinkButtonProps = {
 
 const LinkButton = ({ href, children }: PropsWithChildren<LinkButtonProps>) => (
   <Link
-    className="my-auto px-8 py-1 btn btn-sm btn-primary text-white"
+    className="btn btn-primary btn-sm my-auto px-8 py-1 text-white"
     href={href}
   >
     {children}

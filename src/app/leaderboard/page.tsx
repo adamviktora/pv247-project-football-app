@@ -15,15 +15,15 @@ const SeasonLeaderboard = async ({
   const seasons = await getLeagueSeasonsByLeagueId(searchParams.leagueId);
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="flex w-full flex-col">
       <TopBar
         leagueId={searchParams.leagueId}
         seasonId={searchParams.seasonId}
         seasonOptions={<SeasonOptions seasons={seasons} />}
       />
-      <div className="overflow-x-auto shadow-md sm:rounded-lg mx-auto w-3/4 my-9 max-h-96">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-          <thead className="text-xs text-white uppercase bg-primary-color sticky top-0 h-9">
+      <div className="mx-auto my-9 max-h-96 w-3/4 overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400 ">
+          <thead className="sticky top-0 h-9 bg-primary-color text-xs uppercase text-white">
             <tr className="">
               <HeaderCell content="Position" />
               <HeaderCell content="Club" />

@@ -1,13 +1,19 @@
 import Link from "next/link";
 
-const ReturnButton = () => {
+type ReturnButtonProps = {
+  standalone?: boolean;
+};
+
+const ReturnButton = ({ standalone }: ReturnButtonProps) => {
   return (
     <Link
-      className="text-primary-color rounded-full bg-secondary-color w-12 h-12 flex flex-row m-2"
+      className={`m-2 ${
+        standalone ? "absolute left-2 top-2" : ""
+      } flex h-12 w-12 flex-row rounded-full bg-secondary-color text-primary-color max-sm:hidden`}
       href="/"
     >
       <svg
-        className="w-6 h-6 text-primary-color m-auto"
+        className="m-auto h-6 w-6 text-primary-color"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

@@ -9,8 +9,8 @@ export const LeaderboardRow = ({
     clubSeason.goalsScoredCount - clubSeason.goalsReceivedCount;
 
   return (
-    <tr className="odd:bg-white even:bg-gray-200 border-b h-8">
-      <th className="px-6 text-center font-medium  whitespace-nowrap text-md">
+    <tr className="h-8 border-b odd:bg-white even:bg-gray-200">
+      <th className="text-md whitespace-nowrap px-6  text-center font-medium">
         {clubSeason.order}
       </th>
       <td className="px-6">{clubSeason.club.name}</td>
