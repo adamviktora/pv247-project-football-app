@@ -1,16 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type ReturnButtonProps = {
   standalone?: boolean;
 };
 
 const ReturnButton = ({ standalone }: ReturnButtonProps) => {
+  const router = useRouter();
+
+  const goBack = () => {
+    router.back();
+  };
+
   return (
-    <Link
+    <div
       className={`m-2 ${
         standalone ? "absolute left-2 top-2" : ""
-      } flex h-12 w-12 flex-row rounded-full bg-secondary-color text-primary-color max-sm:hidden`}
-      href="/"
+      } flex h-12 w-12 flex-row rounded-full bg-secondary-color text-primary-color hover:bg-secondary-color-hover max-sm:hidden`}
+      onClick={goBack}
     >
       <svg
         className="m-auto h-6 w-6 text-primary-color"
@@ -27,7 +36,7 @@ const ReturnButton = ({ standalone }: ReturnButtonProps) => {
           d="M13 5H1m0 0 4 4M1 5l4-4"
         />
       </svg>
-    </Link>
+    </div>
   );
 };
 

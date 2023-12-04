@@ -2,9 +2,10 @@ import TopBar from "@/app/components/topBar";
 import SeasonOptions from "../components/server-components/SeasonOptions";
 import ClubOptions from "../components/server-components/ClubOptions";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
-import { getClubsByLeagueSeasonId } from "@/server/club";
+import { getClubById, getClubsByLeagueSeasonId } from "@/server/club";
 import SeasonClubs from "../components/SeasonClubs";
 import { Club, LeagueSeason } from "@prisma/client";
+import { ClubView } from "../components/ClubView";
 
 const ClubDetail = async ({
   searchParams,
@@ -40,8 +41,8 @@ const ClubDetail = async ({
           />
         </div>
       ) : (
-        <div className="h-full w-full bg-slate-300">
-          TBD: Team with id {searchParams.clubId}
+        <div className="h-full w-full shadow-sm">
+          <ClubView club={await getClubById(searchParams.clubId)} />
         </div>
       )}
     </div>
