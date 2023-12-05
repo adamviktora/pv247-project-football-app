@@ -1,4 +1,4 @@
-import ReturnButton from "@/app/components/returnButton";
+import ReturnButton from "@/app/components/ReturnButton";
 
 const PlayerDetail = ({ params }: { params: { playerId: string } }) => {
   // TODO: Fetch player

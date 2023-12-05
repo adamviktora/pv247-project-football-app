@@ -86,7 +86,9 @@ const MainMenu = ({
           {clubOptions}
         </Select>
       </div>
-      <LinkButton href={`/club/${selectedClubId}`}>
+      <LinkButton
+        href={`/club?leagueId=${selectedLeagueId}&seasonId=${selectedSeasonId}&clubId=${selectedClubId}`}
+      >
         Show club details
       </LinkButton>
     </>

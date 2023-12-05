@@ -1,8 +1,8 @@
-import TopBar from "@/app/components/topBar";
+import TopBar from "@/app/components/TopBar";
 import { getClubsByLeagueSeasonId } from "@/server/club";
-import { GameWithClubs } from "@/server/game";
+import { getGamesByLeagueSeasonId } from "@/server/game";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
-import { GameRow } from "../components/gameRow";
+import { GameRow } from "../components/GameRow";
 import ClubOptions from "../components/server-components/ClubOptions";
 import SeasonOptions from "../components/server-components/SeasonOptions";
 
@@ -13,98 +13,7 @@ const SeasonGames = async ({
 }) => {
   const seasons = await getLeagueSeasonsByLeagueId(searchParams.leagueId);
   const clubs = await getClubsByLeagueSeasonId(searchParams.seasonId);
-
-  const games: GameWithClubs[] = [
-    {
-      id: "TBD1",
-      leagueSeasonId: "TBD",
-      homeClub: {
-        id: "abc1",
-        logoURL: "TBD",
-        name: "Leicester",
-        countryCode: "ENG",
-      },
-      awayClub: {
-        id: "abc2",
-        logoURL: "TBD",
-        name: "Liverpool",
-        countryCode: "ENG",
-      },
-      homeClubGoalCount: 0,
-      awayClubGoalCount: 3,
-      round: 36,
-      homeClubId: "abc1",
-      awayClubId: "abc2",
-      eventDate: new Date(2023, 4, 15),
-    },
-
-    {
-      id: "TBD3",
-      leagueSeasonId: "TBD",
-      homeClub: {
-        id: "abc1",
-        logoURL: "TBD",
-        name: "Everton",
-        countryCode: "ENG",
-      },
-      awayClub: {
-        id: "abc2",
-        logoURL: "TBD",
-        name: "Manchester City",
-        countryCode: "ENG",
-      },
-      homeClubGoalCount: 2,
-      awayClubGoalCount: 0,
-      round: 36,
-      homeClubId: "abc1",
-      awayClubId: "abc2",
-      eventDate: new Date(2023, 4, 14),
-    },
-    {
-      id: "TBD4",
-      leagueSeasonId: "TBD",
-      homeClub: {
-        id: "abc1",
-        logoURL: "TBD",
-        name: "Arsenal",
-        countryCode: "ENG",
-      },
-      awayClub: {
-        id: "abc2",
-        logoURL: "TBD",
-        name: "Brighton",
-        countryCode: "ENG",
-      },
-      homeClubGoalCount: 0,
-      awayClubGoalCount: 3,
-      round: 36,
-      homeClubId: "abc1",
-      awayClubId: "abc2",
-      eventDate: new Date(2023, 4, 14),
-    },
-    {
-      id: "TBD5",
-      leagueSeasonId: "TBD",
-      homeClub: {
-        id: "abc1",
-        logoURL: "TBD",
-        name: "Brentford",
-        countryCode: "ENG",
-      },
-      awayClub: {
-        id: "abc2",
-        logoURL: "TBD",
-        name: "West Ham",
-        countryCode: "ENG",
-      },
-      homeClubGoalCount: 2,
-      awayClubGoalCount: 0,
-      round: 36,
-      homeClubId: "abc1",
-      awayClubId: "abc2",
-      eventDate: new Date(2023, 4, 14),
-    },
-  ];
+  const games = await getGamesByLeagueSeasonId(searchParams.seasonId);
 
   return (
     <div className="flex w-full flex-col">

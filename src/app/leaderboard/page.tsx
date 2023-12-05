@@ -1,5 +1,5 @@
-import { LeaderboardRow } from "@/app/components/leaderboardRow";
-import TopBar from "@/app/components/topBar";
+import { LeaderboardRow } from "@/app/components/LeaderboardRow";
+import TopBar from "@/app/components/TopBar";
 import { getClubSeasonsByLeagueSeasonId } from "@/server/clubSeason";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
 import SeasonOptions from "../components/server-components/SeasonOptions";
@@ -39,7 +39,12 @@ const SeasonLeaderboard = async ({
           </thead>
           <tbody className="text-black">
             {clubSeasons.map((clubSeason, index) => (
-              <LeaderboardRow key={index + 1} clubSeason={clubSeason} />
+              <LeaderboardRow
+                key={index + 1}
+                clubSeason={clubSeason}
+                leagueId={searchParams.leagueId}
+                seasonId={searchParams.seasonId}
+              />
             ))}
           </tbody>
         </table>

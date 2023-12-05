@@ -1,5 +1,5 @@
 import { PlayerCreation } from "@/types/creationTypes";
-import { Club, Player, PrismaClient } from "@prisma/client";
+import { Club, ClubSeason, Player, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -28,6 +28,15 @@ export const getPlayerById = async (id: string) => {
     },
   });
   return player;
+};
+
+export const getPlayersByClub = async (clubId: string) => {
+  const players: Player[] = await prisma.player.findMany({
+    where: {
+      currentClubId: clubId,
+    },
+  });
+  return players;
 };
 
 export const addPlayer = async (player: PlayerCreation) => {
