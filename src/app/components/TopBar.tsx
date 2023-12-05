@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import Select from "./Select";
 import ReturnButton from "./ReturnButton";
+import Select from "./Select";
 
 type TopBarProps = {
   leagueId?: string;
@@ -27,10 +27,11 @@ const TopBar = ({
   const leaugeAndSeason = `leagueId=${leagueId}&seasonId=${seasonId}`;
 
   return (
-    <div className="flex h-12 w-full flex-row items-center justify-between bg-secondary-color px-12">
-      <div className="flex w-72 flex-row ">
+    <div className="flex w-full items-center justify-between bg-secondary-color px-12 py-2">
+      <div className="flex w-72">
         <ReturnButton />
         <Select
+          isInline
           selectedValue={seasonId}
           onChange={(e) => {
             router.replace(
@@ -42,9 +43,9 @@ const TopBar = ({
         </Select>
       </div>
       {pathname !== "/club" && (
-        <div className="flex flex-row space-x-4">
+        <div className="flex space-x-4">
           <Link
-            className={`my-auto  py-1 text-primary-color ${
+            className={`py-1 ${
               pathname === "/leaderboard" ? "underline" : ""
             } hover:underline `}
             href={`/leaderboard?${leaugeAndSeason}`}
@@ -52,7 +53,7 @@ const TopBar = ({
             Leaderboard
           </Link>
           <Link
-            className={`my-auto py-1 text-primary-color ${
+            className={`py-1 ${
               pathname === "/games" ? "underline" : ""
             } hover:underline `}
             href={
@@ -66,6 +67,7 @@ const TopBar = ({
       <div className="w-72">
         {pathname !== "/leaderboard" && (
           <Select
+            isInline
             selectedValue={clubId}
             onChange={(e) => {
               router.replace(

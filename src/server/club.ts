@@ -25,6 +25,18 @@ export const getClubsByLeagueSeasonId = async (leagueSeasonId: string) => {
   return clubs;
 };
 
+export const getClubNameById = async (id: string) => {
+  const { name } = await prisma.club.findFirstOrThrow({
+    where: {
+      id: id,
+    },
+    select: {
+      name: true,
+    },
+  });
+  return name;
+};
+
 export const getClubById = async (id: string) => {
   const club: ClubDetails = await prisma.club.findFirstOrThrow({
     where: {
