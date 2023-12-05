@@ -1,5 +1,6 @@
 "use client";
 
+import { Club } from "@prisma/client";
 import { useQueryState } from "next-usequerystate";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
@@ -11,6 +12,7 @@ type MainMenuProps = {
   leagueOptions: ReactNode;
   seasonOptions: ReactNode;
   clubOptions: ReactNode;
+  clubs: Club[];
   leagueId?: string;
   seasonId?: string;
   clubId?: string;
@@ -20,6 +22,7 @@ const MainMenu = ({
   leagueOptions,
   seasonOptions,
   clubOptions,
+  clubs,
   leagueId,
   seasonId,
   clubId,
@@ -32,6 +35,8 @@ const MainMenu = ({
   const selectedLeagueId = leagueIdQueryParam ?? leagueId;
   const selectedSeasonId = seasonIdQueryParam ?? seasonId;
   const selectedClubId = clubIdQueryParam ?? clubId;
+
+  const selectedClub = clubs?.find((club) => club.id === selectedClubId);
 
   return (
     <>
@@ -49,6 +54,8 @@ const MainMenu = ({
         >
           {leagueOptions}
         </Select>
+      </div>
+      <div>
         <Label htmlFor="seasonSelect">Season</Label>
         <Select
           id="seasonSelect"
@@ -72,7 +79,7 @@ const MainMenu = ({
       <LinkButton
         href={`/games?leagueId=${selectedLeagueId}&seasonId=${selectedSeasonId}&clubId=${selectedClubId}`}
       >
-        Show games
+        Show games{selectedClub && ` of ${selectedClub.name}`}
       </LinkButton>
       <div>
         <Label htmlFor="clubSelect">Club</Label>

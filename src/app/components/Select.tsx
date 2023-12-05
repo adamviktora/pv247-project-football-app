@@ -4,6 +4,7 @@ type SelectProps = {
   id?: string;
   selectedValue?: string;
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  isInline?: boolean;
 };
 
 const Select = ({
@@ -11,15 +12,29 @@ const Select = ({
   selectedValue,
   onChange,
   children,
+  isInline,
 }: PropsWithChildren<SelectProps>) => {
   if (!selectedValue) {
     return <span>---</span>;
   }
 
+  if (isInline) {
+    return (
+      <select
+        id={id}
+        className="select m-auto block bg-secondary-color font-semibold hover:bg-secondary-color-hover focus:border-none focus:outline-none"
+        onChange={onChange}
+        value={selectedValue}
+      >
+        {children}
+      </select>
+    );
+  }
+
   return (
     <select
       id={id}
-      className="m-auto block h-9 w-full rounded-lg border border-primary-color bg-secondary-color p-2 text-sm text-primary-color"
+      className="select m-auto block w-full bg-secondary-color font-semibold focus:border-none"
       onChange={onChange}
       value={selectedValue}
     >

@@ -25,7 +25,7 @@ export const LeaderboardRow = ({
 
   return (
     <tr
-      className="h-8 border-b odd:bg-white even:bg-gray-200  hover:bg-gray-400"
+      className="h-8 border-b odd:bg-white even:bg-gray-200  hover:bg-gray-300"
       onClick={openClub}
     >
       <th className="text-md whitespace-nowrap px-6 text-center font-medium">

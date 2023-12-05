@@ -7,7 +7,7 @@ type LabelProps = {
 const Label = ({ htmlFor, children }: PropsWithChildren<LabelProps>) => (
   <label
     htmlFor={htmlFor}
-    className="mb-2 block text-sm font-medium text-primary-color"
+    className="mb-2 ml-2 block text-sm font-medium text-primary-color"
   >
     {children}
   </label>

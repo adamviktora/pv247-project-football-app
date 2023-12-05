@@ -21,11 +21,12 @@ const Home = async ({
   const clubId = searchParams.clubId ?? (clubs.length ? "all" : undefined);
 
   return (
-    <div className="m-auto flex w-80 flex-col space-y-4">
+    <div className="m-auto mt-6 flex w-80 flex-col space-y-4">
       <MainMenu
         leagueOptions={<LeagueOptions leagues={leagues} />}
         seasonOptions={<SeasonOptions seasons={seasons} />}
         clubOptions={<ClubOptions clubs={clubs} />}
+        clubs={clubs}
         leagueId={leagueId}
         seasonId={seasonId}
         clubId={clubId}
