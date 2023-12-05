@@ -1,11 +1,12 @@
 import { GameCreation, GameWithGoalsCreation } from "@/types/creationTypes";
-import { Club, Game, Goal, PrismaClient } from "@prisma/client";
+import { Club, Game, Goal, LeagueSeason, PrismaClient } from "@prisma/client";
 import { addGoal } from "./goal";
 
 const prisma = new PrismaClient();
 
 export type GameWithClubs = Game & { homeClub: Club; awayClub: Club };
 export type GameDetail = GameWithClubs & {
+  leagueSeason: LeagueSeason;
   goals: (Goal & {
     player: { id: string; firstName: string; lastName: string };
   })[];
