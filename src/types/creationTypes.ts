@@ -1,4 +1,3 @@
-import z from "zod";
 import {
   ClubSchema,
   ClubSeasonSchema,
@@ -9,6 +8,7 @@ import {
   PlayerSchema,
   PlayerSeasonSchema,
 } from "@/validators/schema";
+import z from "zod";
 
 export type ClubCreation = z.infer<typeof ClubSchema>;
 export type ClubSeasonCreation = z.infer<typeof ClubSeasonSchema>;

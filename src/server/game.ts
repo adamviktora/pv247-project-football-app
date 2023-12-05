@@ -37,6 +37,7 @@ export const getGameDetailById = async (id: string) => {
       id: id,
     },
     include: {
+      leagueSeason: true,
       homeClub: true,
       awayClub: true,
       goals: {

@@ -1,19 +1,19 @@
 import TopBar from "@/app/components/TopBar";
-import SeasonOptions from "../components/server-components/SeasonOptions";
-import ClubOptions from "../components/server-components/ClubOptions";
-import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
 import { getClubById, getClubsByLeagueSeasonId } from "@/server/club";
-import SeasonClubs from "../components/SeasonClubs";
+import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
 import { Club, LeagueSeason } from "@prisma/client";
 import { ClubView } from "../components/ClubView";
+import SeasonClubs from "../components/SeasonClubs";
+import ClubOptions from "../components/server-components/ClubOptions";
+import SeasonOptions from "../components/server-components/SeasonOptions";
 
 const ClubDetail = async ({
   searchParams,
 }: {
   searchParams: { leagueId?: string; seasonId?: string; clubId: string };
 }) => {
-  var seasons: LeagueSeason[] = [];
-  var clubs: Club[] = [];
+  let seasons: LeagueSeason[] = [];
+  let clubs: Club[] = [];
 
   if (searchParams.leagueId) {
     seasons = await getLeagueSeasonsByLeagueId(searchParams.leagueId);

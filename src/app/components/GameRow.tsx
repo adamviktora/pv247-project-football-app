@@ -13,7 +13,7 @@ export const GameRow = ({ game }: { game: GameWithClubs }) => {
 
   return (
     <tr
-      className="h-12 border-b odd:bg-white even:bg-gray-200 hover:bg-gray-400"
+      className="h-12 border-b odd:bg-white even:bg-gray-200 hover:cursor-pointer hover:bg-gray-300"
       onClick={openGame}
     >
       <td className="whitespace-nowrap pl-16 text-right font-semibold">

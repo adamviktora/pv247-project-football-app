@@ -17,7 +17,7 @@ const ReturnButton = ({ standalone }: ReturnButtonProps) => {
     <div
       className={`m-2 ${
         standalone ? "absolute left-2 top-2" : ""
-      } flex h-12 w-12 flex-row rounded-full bg-secondary-color text-primary-color hover:bg-secondary-color-hover max-sm:hidden`}
+      } flex h-12 w-12 flex-row rounded-full bg-secondary-color text-primary-color hover:cursor-pointer hover:bg-secondary-color-hover max-sm:hidden`}
       onClick={goBack}
     >
       <svg

@@ -22,7 +22,7 @@ export const ClubRow = ({
 
   return (
     <tr
-      className="h-16 border-b odd:bg-white even:bg-gray-200 hover:bg-gray-400"
+      className="h-16 border-b odd:bg-white even:bg-gray-200 hover:cursor-pointer hover:bg-gray-300"
       onClick={openClub}
     >
       <td className="whitespace-nowrap px-9 py-3 text-left font-semibold">

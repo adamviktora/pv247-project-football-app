@@ -1,11 +1,26 @@
 import ReturnButton from "@/app/components/ReturnButton";
 import { getGameDetailById } from "@/server/game";
 import { formatDate } from "@/utils/date";
+import { Club } from "@prisma/client";
 import Link from "next/link";
-import ClubCard from "./ClubCard";
 
 const GameDetail = async ({ params }: { params: { gameId: string } }) => {
   const game = await getGameDetailById(params.gameId);
+
+  const seasonId = game.leagueSeasonId;
+  const leagueId = game.leagueSeason.leagueId;
+
+  const clubCard = (club: Club, isHome?: boolean) => (
+    <Link
+      href={`/club?clubId=${club.id}&seasonId=${seasonId}&leagueId=${leagueId}`}
+      className={`flex ${
+        isHome ? "flex-row-reverse" : ""
+      } w-1/3 items-center gap-4 px-4 py-2 hover:cursor-pointer hover:rounded-lg hover:bg-gray-200`}
+    >
+      <img className="max-h-14" src={club.logoURL} alt="|Logo|" />
+      <div className="sm:text-lg">{club.name}</div>
+    </Link>
+  );
 
   const goalsList = (clubId: string) =>
     game.goals
@@ -36,11 +51,11 @@ const GameDetail = async ({ params }: { params: { gameId: string } }) => {
           </div>
         </div>
         <div className="flex items-center justify-center gap-4">
-          <ClubCard isHome club={game.homeClub} />
+          {clubCard(game.homeClub, true)}
           <div className="flex h-20 w-1/3 items-center justify-center rounded-lg bg-secondary-color text-4xl font-semibold sm:text-5xl lg:w-[202px]">
             {game.homeClubGoalCount} - {game.awayClubGoalCount}
           </div>
-          <ClubCard club={game.awayClub} />
+          {clubCard(game.awayClub)}
         </div>
       </div>
       <div className="mt-8 flex justify-center text-gray-500 max-sm:justify-around max-sm:text-sm sm:gap-56">

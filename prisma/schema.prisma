@@ -23,6 +23,7 @@ model LeagueSeason {
   leagueId    String
   league      League       @relation(fields: [leagueId], references: [id])
   clubSeasons ClubSeason[]
+  game        Game[]
 }
 
 model Club {
@@ -39,7 +40,7 @@ model Club {
 }
 
 model Game {
-  id                String   @id @default(uuid())
+  id                String       @id @default(uuid())
   eventDate         DateTime
   leagueSeasonId    String
   round             Int
@@ -47,8 +48,9 @@ model Game {
   awayClubId        String
   homeClubGoalCount Int?
   awayClubGoalCount Int?
-  homeClub          Club     @relation(name: "homeClub", fields: [homeClubId], references: [id])
-  awayClub          Club     @relation(name: "awayClub", fields: [awayClubId], references: [id])
+  leagueSeason      LeagueSeason @relation(fields: [leagueSeasonId], references: [id])
+  homeClub          Club         @relation(name: "homeClub", fields: [homeClubId], references: [id])
+  awayClub          Club         @relation(name: "awayClub", fields: [awayClubId], references: [id])
   goals             Goal[]
 }
 
