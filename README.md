@@ -1,3 +1,11 @@
+# TODO:
+
+- Admin mode
+- Login system
+- Responsive design
+- Player detail
+- Club detail (seasons table)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Backend
