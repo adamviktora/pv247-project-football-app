@@ -6,7 +6,7 @@
   - Main menu - DONE
   - Game detail - DONE (fix margin)
   - Club list - DONE
-  - Games list
+  - Games list - DONE
   - Leaderboard
   - Club detail
   - Player detail

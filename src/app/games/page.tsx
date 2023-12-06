@@ -24,8 +24,10 @@ const SeasonGames = async ({
         seasonOptions={<SeasonOptions seasons={seasons} />}
         clubOptions={<ClubOptions clubs={clubs} />}
       />
-      <span className="mx-auto mt-9 w-1/2">Round TBD/TBD</span>
-      <div className="mx-auto mb-9 max-h-96 w-1/2 overflow-x-auto shadow-md sm:rounded-lg">
+      <span className="mx-auto mt-9 w-full md:w-2/3 lg:w-1/2">
+        Round TBD/TBD
+      </span>
+      <div className="mx-auto mb-9 max-h-96 w-full overflow-x-auto shadow-md sm:rounded-lg md:w-2/3 lg:w-1/2">
         <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400 ">
           <tbody className="text-black">
             {games.map((game, index) => (
