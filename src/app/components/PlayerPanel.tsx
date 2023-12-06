@@ -13,11 +13,11 @@ export const PlayerPanel = ({
   const router = useRouter();
 
   const openPlayer = () => {
-    if (seasonId === undefined) {
-      router.push(`/player/${player.id}`);
-    } else {
-      router.push(`/player/${player.id}?seasonId=${seasonId}`);
-    }
+    router.push(
+      seasonId
+        ? "/player/${player.id}?seasonId=${seasonId}"
+        : "/player/${player.id}",
+    );
   };
 
   return (
