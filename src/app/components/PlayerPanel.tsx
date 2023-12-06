@@ -3,11 +3,21 @@
 import { Player } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
-export const PlayerPanel = ({ player }: { player: Player }) => {
+export const PlayerPanel = ({
+  player,
+  seasonId,
+}: {
+  player: Player;
+  seasonId?: string;
+}) => {
   const router = useRouter();
 
   const openPlayer = () => {
-    router.push(`/player/${player.id}`);
+    router.push(
+      seasonId
+        ? "/player/${player.id}?seasonId=${seasonId}"
+        : "/player/${player.id}",
+    );
   };
 
   return (

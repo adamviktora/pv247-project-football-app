@@ -2,7 +2,13 @@ import { getPlayersByClub } from "@/server/player";
 import { Club } from "@prisma/client";
 import { PlayerPanel } from "./PlayerPanel";
 
-export const ClubView = async ({ club }: { club: Club }) => {
+export const ClubView = async ({
+  club,
+  seasonId,
+}: {
+  club: Club;
+  seasonId?: string;
+}) => {
   const players = await getPlayersByClub(club.id);
 
   return (
@@ -17,7 +23,7 @@ export const ClubView = async ({ club }: { club: Club }) => {
       <div className="px-48 font-semibold">Squad</div>
       <div className="mx-48 mb-12 flex flex-row overflow-x-auto">
         {players.map((player) => (
-          <PlayerPanel key={player.id} player={player} />
+          <PlayerPanel key={player.id} player={player} seasonId={seasonId} />
         ))}
       </div>
     </div>

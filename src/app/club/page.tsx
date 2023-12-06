@@ -22,8 +22,6 @@ const ClubDetail = async ({
     clubs = await getClubsByLeagueSeasonId(searchParams.seasonId);
   }
 
-  // TODO: Fetch team data
-
   return (
     <div className="flex w-full flex-col ">
       <TopBar
@@ -42,7 +40,10 @@ const ClubDetail = async ({
         </div>
       ) : (
         <div className="h-full w-full shadow-sm">
-          <ClubView club={await getClubById(searchParams.clubId)} />
+          <ClubView
+            club={await getClubById(searchParams.clubId)}
+            seasonId={searchParams.seasonId}
+          />
         </div>
       )}
     </div>

@@ -1,11 +1,24 @@
 import { PlayerCreation } from "@/types/creationTypes";
-import { Club, ClubSeason, Player, PrismaClient } from "@prisma/client";
+import {
+  Club,
+  ClubSeason,
+  LeagueSeason,
+  Player,
+  PrismaClient,
+} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 type PlayerWithSeasons = Player & {
   currentClub: Club;
-  playerSeasons: { goalCount: number; clubSeason: { club: Club } }[];
+  playerSeasons: {
+    goalCount: number;
+    clubSeason: {
+      club: Club;
+      id: string;
+      leagueSeason: LeagueSeason;
+    };
+  }[];
 };
 
 export const getPlayerById = async (id: string) => {
@@ -21,6 +34,15 @@ export const getPlayerById = async (id: string) => {
           clubSeason: {
             select: {
               club: true,
+              id: true,
+              leagueSeason: true,
+            },
+          },
+        },
+        orderBy: {
+          clubSeason: {
+            leagueSeason: {
+              year: "desc",
             },
           },
         },
