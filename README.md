@@ -3,6 +3,14 @@
 - Admin mode
 - Login system
 - Responsive design
+  - Main menu - DONE
+  - Game detail - DONE (fix margin)
+  - Club list - DONE
+  - Games list
+  - Leaderboard
+  - Club detail
+  - Player detail
+  - Top panel
 - Player detail
 - Club detail (seasons table)
 
