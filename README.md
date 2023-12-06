@@ -7,7 +7,7 @@
   - Game detail - DONE (fix margin)
   - Club list - DONE
   - Games list - DONE
-  - Leaderboard
+  - Leaderboard - DONE
   - Club detail
   - Player detail
   - Top panel

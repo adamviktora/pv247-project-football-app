@@ -25,13 +25,13 @@ export const LeaderboardRow = ({
 
   return (
     <tr
-      className="h-8 border-b odd:bg-white even:bg-gray-200  hover:bg-gray-300"
+      className="h-8 border-b  odd:bg-white  even:bg-gray-200 hover:bg-gray-300 "
       onClick={openClub}
     >
-      <th className="text-md whitespace-nowrap px-6 text-center font-medium">
+      <th className="text-md whitespace-nowrap px-1 text-center font-medium md:px-2 xl:px-6">
         {clubSeason.order}
       </th>
-      <td className="px-6">{clubSeason.club.name}</td>
+      <td className="px-1 md:px-2 xl:px-6">{clubSeason.club.name}</td>
       <TableCell content={clubSeason.gamesPlayedCount} />
       <TableCell content={clubSeason.gamesWonCount} />
       <TableCell content={clubSeason.gamesDrawnCount} />
@@ -45,5 +45,5 @@ export const LeaderboardRow = ({
 };
 
 const TableCell = ({ content }: { content: any }) => {
-  return <td className="px-6 text-center">{content}</td>;
+  return <td className="px-1 text-center md:px-2 xl:px-6 ">{content}</td>;
 };
