@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 const HeaderCell = ({
   text,
@@ -9,20 +9,10 @@ const HeaderCell = ({
   text: string;
   textMobile?: string;
 }) => {
-  const [isMobile, setIsMobile] = useState(false);
-  // Check if page is opened on mobile device (based on user agent).
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const mobileCheck =
-        /iPhone|iPad|iPod|Android|BlackBerry|Windows Phone/i.test(
-          navigator.userAgent,
-        );
-      setIsMobile(mobileCheck);
-    }
-  }, []);
+  const isMobile = !useMediaQuery("(min-width: 768px)");
 
   return (
-    <th className="px-1 text-center md:px-2  xl:px-6">
+    <th className="px-1 text-center md:px-2 xl:px-6">
       {isMobile ? textMobile || text : text}
     </th>
   );

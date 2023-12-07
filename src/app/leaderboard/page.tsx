@@ -2,8 +2,8 @@ import { LeaderboardRow } from "@/app/components/LeaderboardRow";
 import TopBar from "@/app/components/TopBar";
 import { getClubSeasonsByLeagueSeasonId } from "@/server/clubSeason";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
-import SeasonOptions from "../components/server-components/SeasonOptions";
 import HeaderCell from "../components/HeaderCell";
+import SeasonOptions from "../components/server-components/SeasonOptions";
 
 const SeasonLeaderboard = async ({
   searchParams,
@@ -22,8 +22,8 @@ const SeasonLeaderboard = async ({
         seasonId={searchParams.seasonId}
         seasonOptions={<SeasonOptions seasons={seasons} />}
       />
-      <div className="mx-auto my-9 max-h-96 w-full overflow-x-auto shadow-md sm:rounded-lg lg:w-4/5 xl:w-2/3 ">
-        <table className="w-full text-left text-xs text-gray-500 rtl:text-right dark:text-gray-400 md:text-sm ">
+      <div className="mx-auto my-9 max-h-96 w-full overflow-x-auto shadow-md sm:rounded-lg lg:w-[64rem] ">
+        <table className="w-full text-left text-xs text-gray-500 md:text-sm ">
           <thead className="sticky h-9 bg-primary-color text-xs uppercase text-white">
             <tr className="">
               <HeaderCell text="Position" textMobile="Pos." />
