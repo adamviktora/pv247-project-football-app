@@ -25,10 +25,10 @@ export const ClubRow = ({
       className="h-16 border-b odd:bg-white even:bg-gray-200 hover:cursor-pointer hover:bg-gray-300"
       onClick={openClub}
     >
-      <td className="whitespace-nowrap px-9 py-3 text-left font-semibold">
-        <img className="max-h-16" src={club.logoURL} alt="|Logo|" />
+      <td className="w-24 whitespace-nowrap py-3 pl-4 text-left font-semibold md:pl-9">
+        <img className="h-min-16 " src={club.logoURL} alt="|Logo|" />
       </td>
-      <td className="whitespace-nowrap px-9 py-3 text-right text-xl font-semibold">
+      <td className="whitespace-nowrap  py-3 pr-4 text-right text-xl font-semibold md:px-9">
         {club.name}
       </td>
     </tr>

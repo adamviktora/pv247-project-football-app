@@ -2,6 +2,7 @@ import { LeaderboardRow } from "@/app/components/LeaderboardRow";
 import TopBar from "@/app/components/TopBar";
 import { getClubSeasonsByLeagueSeasonId } from "@/server/clubSeason";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
+import HeaderCell from "../components/HeaderCell";
 import SeasonOptions from "../components/server-components/SeasonOptions";
 
 const SeasonLeaderboard = async ({
@@ -21,20 +22,20 @@ const SeasonLeaderboard = async ({
         seasonId={searchParams.seasonId}
         seasonOptions={<SeasonOptions seasons={seasons} />}
       />
-      <div className="mx-auto my-9 max-h-96 w-3/4 overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400 ">
-          <thead className="sticky top-0 h-9 bg-primary-color text-xs uppercase text-white">
+      <div className="mx-auto my-9 max-h-96 w-full overflow-x-auto shadow-md sm:rounded-lg lg:w-[64rem] ">
+        <table className="w-full text-left text-xs text-gray-500 md:text-sm ">
+          <thead className="sticky h-9 bg-primary-color text-xs uppercase text-white">
             <tr className="">
-              <HeaderCell content="Position" />
-              <HeaderCell content="Club" />
-              <HeaderCell content="Played" />
-              <HeaderCell content="Won" />
-              <HeaderCell content="Drawn" />
-              <HeaderCell content="Lost" />
-              <HeaderCell content="GF" />
-              <HeaderCell content="GA" />
-              <HeaderCell content="GD" />
-              <HeaderCell content="Points" />
+              <HeaderCell text="Position" textMobile="Pos." />
+              <HeaderCell text="Club" />
+              <HeaderCell text="Played" />
+              <HeaderCell text="Win" textMobile="W" />
+              <HeaderCell text="Draw" textMobile="D" />
+              <HeaderCell text="Loss" textMobile="L" />
+              <HeaderCell text="GF" />
+              <HeaderCell text="GA" />
+              <HeaderCell text="GD" />
+              <HeaderCell text="Points" textMobile="Pts." />
             </tr>
           </thead>
           <tbody className="text-black">
@@ -51,10 +52,6 @@ const SeasonLeaderboard = async ({
       </div>
     </div>
   );
-};
-
-const HeaderCell = ({ content }: { content: string }) => {
-  return <th className="px-6 text-center">{content}</th>;
 };
 
 export default SeasonLeaderboard;

@@ -11,7 +11,7 @@ const SeasonClubs = async ({
   const clubs = await getClubsByLeagueSeasonId(seasonId);
 
   return (
-    <div className="mx-auto mb-9 mt-10 max-h-96 w-2/5 overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="mx-auto mb-9 mt-10 max-h-96 overflow-x-auto  shadow-md sm:rounded-lg md:w-3/5 lg:w-2/5">
       {clubs.length === 0 ? (
         <div className="m-auto p-16 text-center text-4xl font-semibold">
           No teams found.

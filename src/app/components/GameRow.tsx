@@ -16,23 +16,23 @@ export const GameRow = ({ game }: { game: GameWithClubs }) => {
       className="h-12 border-b odd:bg-white even:bg-gray-200 hover:cursor-pointer hover:bg-gray-300"
       onClick={openGame}
     >
-      <td className="whitespace-nowrap pl-16 text-right font-semibold">
+      <td className="whitespace-nowrap pl-4 text-right font-semibold max-md:text-xs sm:pl-16">
         {game.homeClub.name}
       </td>
-      <td className="px-4 text-center ">
-        <div className="flex flex-row">
-          <div className="text-md m-0.5 rounded-l-lg bg-primary-color p-1 pl-5 pr-4 font-semibold text-white ">
-            {game.homeClubGoalCount != undefined ? game.homeClubGoalCount : "-"}
+      <td className="px-1 text-center md:px-4">
+        <div className="mx-1 flex flex-row text-base font-semibold text-white md:text-lg">
+          <div className="mr-0.5 flex h-8 w-12 items-center justify-center rounded-l-lg bg-primary-color">
+            {game.homeClubGoalCount ?? "-"}
           </div>
-          <div className="text-md m-0.5 ml-0 rounded-r-lg bg-primary-color p-1 pl-4 pr-5 font-semibold text-white">
-            {game.awayClubGoalCount != undefined ? game.awayClubGoalCount : "-"}
+          <div className="flex h-8 w-12 items-center justify-center rounded-r-lg bg-primary-color">
+            {game.awayClubGoalCount ?? "-"}
           </div>
         </div>
       </td>
-      <td className="whitespace-nowrap text-left font-semibold">
+      <td className="whitespace-nowrap text-left font-semibold max-md:text-xs">
         {game.awayClub.name}
       </td>
-      <td className="w-full whitespace-nowrap px-6 pr-16 text-right font-semibold">
+      <td className="w-full whitespace-nowrap pr-4 text-right text-xs font-semibold md:text-sm">
         {formatDate(game.eventDate)}
       </td>
     </tr>
