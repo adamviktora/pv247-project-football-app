@@ -1,5 +1,6 @@
 "use client";
 
+import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
 import LeagueOptions from "@/app/components/server-components/LeagueOptions";
 import { add, getAll } from "@/fetch-helper/CRUD";
@@ -52,24 +53,13 @@ const AddSeasonPage = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="m-auto flex max-w-xs flex-col gap-2"
       >
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text">Year</span>
-          </div>
-          <input
-            {...register("year", { valueAsNumber: true })}
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-          {errors.year && (
-            <div className="label">
-              <span className="label-text-alt text-red-700">
-                {errors.year.message}
-              </span>
-            </div>
-          )}
-        </label>
+        <Input
+          name="year"
+          label="Year"
+          register={register}
+          placeholder={`e.g. ${new Date().getFullYear()}`}
+          errorMessage={errors?.year?.message}
+        />
         <label className="form-control w-full max-w-xs">
           <div className="label">
             <span className="label-text text-black">League</span>

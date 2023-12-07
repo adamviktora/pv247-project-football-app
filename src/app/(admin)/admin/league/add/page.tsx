@@ -1,5 +1,6 @@
 "use client";
 
+import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
 import { add } from "@/fetch-helper/CRUD";
 import { LeagueCreation } from "@/types/creationTypes";
@@ -50,27 +51,16 @@ const AddLeaguePage = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="m-auto flex max-w-xs flex-col gap-2"
       >
+        <Input
+          name="name"
+          label="Name"
+          register={register}
+          placeholder="e.g. Bundesliga"
+          errorMessage={errors?.name?.message}
+        />
         <label className="form-control w-full max-w-xs">
           <div className="label">
-            <span className="label-text">{label}</span>
-          </div>
-          <input
-            {...register("name")}
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-          {errors.name && (
-            <div className="label">
-              <span className="label-text-alt text-red-700">
-                {errors.name.message}
-              </span>
-            </div>
-          )}
-        </label>
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text text-black">{label}</span>
+            <span className="label-text text-black">Country</span>
           </div>
           <select
             {...register("countryCode")}
@@ -83,7 +73,6 @@ const AddLeaguePage = () => {
             ))}
           </select>
         </label>
-
         <button className="btn btn-primary mt-6 text-white">Add</button>
       </form>
       {newLeagueName && (
