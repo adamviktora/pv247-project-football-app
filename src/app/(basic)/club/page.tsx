@@ -2,10 +2,10 @@ import TopBar from "@/app/components/TopBar";
 import { getClubById, getClubsByLeagueSeasonId } from "@/server/club";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
 import { Club, LeagueSeason } from "@prisma/client";
-import { ClubView } from "../components/ClubView";
-import SeasonClubs from "../components/SeasonClubs";
-import ClubOptions from "../components/server-components/ClubOptions";
-import SeasonOptions from "../components/server-components/SeasonOptions";
+import { ClubView } from "../../components/ClubView";
+import SeasonClubs from "../../components/SeasonClubs";
+import ClubOptions from "../../components/server-components/ClubOptions";
+import SeasonOptions from "../../components/server-components/SeasonOptions";
 
 const ClubDetail = async ({
   searchParams,

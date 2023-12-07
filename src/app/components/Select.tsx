@@ -1,40 +1,41 @@
-import { ChangeEvent, PropsWithChildren } from "react";
+import { ChangeEvent, PropsWithChildren, ReactNode } from "react";
 
 type SelectProps = {
-  id?: string;
   selectedValue?: string;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
-  isInline?: boolean;
+  onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
+  label?: ReactNode;
+  disabled?: boolean;
 };
 
 const Select = ({
-  id,
   selectedValue,
   onChange,
   children,
-  isInline,
+  label,
+  disabled,
 }: PropsWithChildren<SelectProps>) => {
-  if (!selectedValue) {
-    return <span>---</span>;
-  }
-
-  if (isInline) {
+  if (label) {
     return (
-      <select
-        id={id}
-        className="select m-auto block bg-secondary-color font-semibold hover:bg-secondary-color-hover focus:border-none focus:outline-none"
-        onChange={onChange}
-        value={selectedValue}
-      >
-        {children}
-      </select>
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text text-black">{label}</span>
+        </div>
+        <select
+          disabled={disabled}
+          className={`select m-auto block w-full bg-secondary-color font-semibold text-black focus:border-none`}
+          onChange={onChange}
+          value={selectedValue}
+        >
+          {children}
+        </select>
+      </label>
     );
   }
 
   return (
     <select
-      id={id}
-      className="select m-auto block w-full bg-secondary-color font-semibold focus:border-none"
+      disabled={disabled}
+      className={`select m-auto block bg-secondary-color font-semibold text-black hover:bg-secondary-color-hover focus:border-none focus:outline-none`}
       onChange={onChange}
       value={selectedValue}
     >

@@ -1,12 +1,17 @@
 import { z } from "zod";
 
 export const LeagueSchema = z.object({
-  name: z.string(),
+  name: z.string().min(1, "League name can't be empty"),
   countryCode: z.string(),
 });
 
 export const LeagueSeasonSchema = z.object({
-  year: z.number(),
+  year: z
+    .number({
+      invalid_type_error: "Please fill in a number",
+    })
+    .min(1870, "Year must be greater than 1870")
+    .max(2050, "Year must be less than 2050"),
   leagueId: z.string(), // Foreign key
 });
 
@@ -63,4 +68,9 @@ export const PlayerSchema = z.object({
 export const PlayerSeasonSchema = z.object({
   playerId: z.string(), // Foreign key
   clubSeasonId: z.string(), // Foreign key
+});
+
+export const AdminLoginSchema = z.object({
+  email: z.string().email("Please enter a valid email"),
+  password: z.string().min(1, "Please enter your password"),
 });

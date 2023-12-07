@@ -2,8 +2,8 @@ import { LeaderboardRow } from "@/app/components/LeaderboardRow";
 import TopBar from "@/app/components/TopBar";
 import { getClubSeasonsByLeagueSeasonId } from "@/server/clubSeason";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
-import HeaderCell from "../components/HeaderCell";
-import SeasonOptions from "../components/server-components/SeasonOptions";
+import HeaderCell from "../../components/HeaderCell";
+import SeasonOptions from "../../components/server-components/SeasonOptions";
 
 const SeasonLeaderboard = async ({
   searchParams,

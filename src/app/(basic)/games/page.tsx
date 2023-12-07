@@ -2,9 +2,9 @@ import TopBar from "@/app/components/TopBar";
 import { getClubsByLeagueSeasonId } from "@/server/club";
 import { getGamesByLeagueSeasonId } from "@/server/game";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
-import { GameRow } from "../components/GameRow";
-import ClubOptions from "../components/server-components/ClubOptions";
-import SeasonOptions from "../components/server-components/SeasonOptions";
+import { GameRow } from "../../components/GameRow";
+import ClubOptions from "../../components/server-components/ClubOptions";
+import SeasonOptions from "../../components/server-components/SeasonOptions";
 
 const SeasonGames = async ({
   searchParams,
