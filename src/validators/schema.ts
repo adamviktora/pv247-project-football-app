@@ -15,9 +15,13 @@ export const LeagueSeasonSchema = z.object({
   leagueId: z.string(), // Foreign key
 });
 
+
 export const ClubSchema = z.object({
-  name: z.string(),
-  logoURL: z.string(),
+  name: z.string().min(1, "Name can't be empty"),
+  logoURL: z
+    .string()
+    .url("Invalid URL")
+    .regex(/\.(jpg|png)$/i, "Mus end with .jpg or .png"),
   countryCode: z.string(),
 });
 

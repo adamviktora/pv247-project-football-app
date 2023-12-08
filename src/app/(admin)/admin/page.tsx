@@ -10,6 +10,9 @@ const AdminPage = () => {
         <Link className="btn btn-primary text-white" href="/admin/season/add">
           Add season
         </Link>
+        <Link className="btn btn-primary text-white" href="/admin/club/add">
+          Add club
+        </Link>
       </div>
     </div>
   );
