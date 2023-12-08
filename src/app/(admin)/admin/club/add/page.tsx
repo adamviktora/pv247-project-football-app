@@ -12,6 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 const AddClubPage = () => {
   const [newClubName, setNewClubName] = useState("");
+  const [errorText, setErrorText] = useState("");
 
   const {
     register,
@@ -23,6 +24,11 @@ const AddClubPage = () => {
   const onSubmit: SubmitHandler<ClubCreation> = async (data) => {
     // TODO: Check if club name already exists in add function
     const newClub = await add<ClubCreation, Club>("club", data);
+    if (newClub == null) {
+      setErrorText("Club with this names already exists");
+      setTimeout(() => setErrorText(""), 3000);
+      return;
+    }
     reset();
     setNewClubName(newClub.name);
     setTimeout(() => setNewClubName(""), 3000);
@@ -88,6 +94,13 @@ const AddClubPage = () => {
         <div className="toast toast-center mb-20">
           <div className="alert border-0 bg-secondary-color shadow-md">
             <span>Club {newClubName} created.</span>
+          </div>
+        </div>
+      )}
+      {errorText && (
+        <div className="toast toast-center mb-20">
+          <div className="alert border-0 bg-red-400 shadow-md">
+            <span>{errorText}</span>
           </div>
         </div>
       )}

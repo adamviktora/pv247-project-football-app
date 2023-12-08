@@ -44,6 +44,15 @@ export const getClubById = async (id: string) => {
 };
 
 export const addClub = async (club: ClubCreation) => {
+  const same_club = await prisma.club.findMany({
+    where: {
+      name: club.name,
+    },
+  });
+  if (same_club.length != 0) {
+    return null;
+  }
+
   const newClub = await prisma.club.create({
     data: club,
   });
