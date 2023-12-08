@@ -1,10 +1,10 @@
 import { getClubsByLeagueSeasonId } from "@/server/club";
 import { getLeagues } from "@/server/league";
 import { getLeagueSeasonsByLeagueId } from "@/server/leagueSeason";
-import MainMenu from "./components/MainMenu";
-import ClubOptions from "./components/server-components/ClubOptions";
-import LeagueOptions from "./components/server-components/LeagueOptions";
-import SeasonOptions from "./components/server-components/SeasonOptions";
+import MainMenu from "../components/MainMenu";
+import ClubOptions from "../components/server-components/ClubOptions";
+import LeagueOptions from "../components/server-components/LeagueOptions";
+import SeasonOptions from "../components/server-components/SeasonOptions";
 
 const Home = async ({
   searchParams,
@@ -21,7 +21,7 @@ const Home = async ({
   const clubId = searchParams.clubId ?? (clubs.length ? "all" : undefined);
 
   return (
-    <div className="m-auto mt-6 flex w-80 flex-col space-y-4">
+    <div className="m-auto mb-14 mt-6 flex w-80 flex-col space-y-4">
       <MainMenu
         leagueOptions={<LeagueOptions leagues={leagues} />}
         seasonOptions={<SeasonOptions seasons={seasons} />}

@@ -1,4 +1,5 @@
 import {
+  AdminLoginSchema,
   ClubSchema,
   ClubSeasonSchema,
   GameSchema,
@@ -22,3 +23,5 @@ export type PlayerSeasonCreation = z.infer<typeof PlayerSeasonSchema>;
 export type GameWithGoalsCreation = GameCreation & {
   goals: Omit<GoalCreation, "gameId">[];
 };
+
+export type AdminLogin = z.infer<typeof AdminLoginSchema>;

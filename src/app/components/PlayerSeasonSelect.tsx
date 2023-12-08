@@ -1,9 +1,8 @@
 "use client";
 
-import { PropsWithChildren } from "react";
-import Select from "./Select";
-import { useRouter } from "next/navigation";
 import { LeagueSeason } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import Select from "./Select";
 import SeasonOptions from "./server-components/SeasonOptions";
 
 const PlayerSaeasonSelect = ({
@@ -19,7 +18,6 @@ const PlayerSaeasonSelect = ({
 
   return (
     <Select
-      isInline
       selectedValue={seasonId}
       onChange={(e) => {
         router.replace(`/player/${playerId}?seasonId=${seasonId}`);

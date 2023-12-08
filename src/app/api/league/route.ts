@@ -3,7 +3,7 @@ import { LeagueCreation } from "@/types/creationTypes";
 import { NextRequest } from "next/server";
 
 export async function GET() {
-  const leagues = getLeagues();
+  const leagues = await getLeagues();
   return Response.json(leagues);
 }
 

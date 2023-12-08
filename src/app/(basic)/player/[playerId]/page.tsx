@@ -1,12 +1,9 @@
 import LabeledField from "@/app/components/LabledField";
 import PlayerSaeasonSelect from "@/app/components/PlayerSeasonSelect";
 import ReturnButton from "@/app/components/ReturnButton";
-import Select from "@/app/components/Select";
-import SeasonOptions from "@/app/components/server-components/SeasonOptions";
 import { getPlayerById } from "@/server/player";
-import { LeagueCreation } from "@/types/creationTypes";
 import { calculateAge, formatDate } from "@/utils/date";
-import { ClubSeason, LeagueSeason } from "@prisma/client";
+import { LeagueSeason } from "@prisma/client";
 
 const PlayerDetail = async ({
   params,

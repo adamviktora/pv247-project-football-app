@@ -31,7 +31,6 @@ const TopBar = ({
       <div className="flex w-72">
         <ReturnButton />
         <Select
-          isInline
           selectedValue={seasonId}
           onChange={(e) => {
             router.replace(
@@ -67,7 +66,6 @@ const TopBar = ({
       <div className="w-72">
         {pathname !== "/leaderboard" && (
           <Select
-            isInline
             selectedValue={clubId}
             onChange={(e) => {
               router.replace(
