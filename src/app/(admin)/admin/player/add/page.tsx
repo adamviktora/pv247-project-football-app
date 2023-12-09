@@ -3,6 +3,7 @@
 import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
 import { add } from "@/fetch-helper/CRUD";
+import { PlayerPosition } from "@/seeding/player";
 import {
   ClubCreation,
   LeagueCreation,
@@ -37,7 +38,7 @@ const AddPlayerPage = () => {
     //   currentClubId: arsenalId,
     // },
 
-    const newPlayer = await add<PlayerCreation, Player>("club", data);
+    const newPlayer = await add<PlayerCreation, Player>("player", data);
     if (newPlayer == null) {
       setErrorText("Club with this names already exists");
       setTimeout(() => setErrorText(""), 3000);
@@ -47,19 +48,6 @@ const AddPlayerPage = () => {
     setNewPlayerNameewClubName(newPlayer.firstName + newPlayer.lastName);
     setTimeout(() => setNewPlayerNameewClubName(""), 3000);
   };
-
-  const countryOptions = [
-    // TODO: Move somewhere
-    { value: "ENG", label: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England" },
-    { value: "ESP", label: "🇪🇸 Spain" },
-    { value: "GER", label: "🇩🇪 Germany" },
-    { value: "ITA", label: "🇮🇹 Italy" },
-    { value: "FRA", label: "🇫🇷 France" },
-    { value: "POR", label: "🇵🇹 Portugal" },
-    { value: "NED", label: "🇳🇱 Netherlands" },
-    { value: "BEL", label: "🇧🇪 Belgium" },
-    { value: "ARG", label: "🇦🇷 Argentina" },
-  ];
 
   const label = "Name";
 
@@ -88,12 +76,27 @@ const AddPlayerPage = () => {
           errorMessage={errors?.lastName?.message}
         />
         <Input
-          name="position"
-          label="Position"
+          name="dateOfBirth"
+          label="Date of birth"
           register={register}
-          placeholder="e.g. striker"
-          errorMessage={errors?.position?.message}
+          errorMessage={errors?.dateOfBirth?.message}
         />
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <span className="label-text text-black">Position</span>
+          </div>
+          <select
+            {...register("position")}
+            className="select m-auto block w-full bg-gray-300 font-semibold text-black focus:border-none"
+            //defaultValue={PlayerPosition.Forward}
+          >
+            {Object.values(PlayerPosition).map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
         <Input
           name="dressNumber"
           label="Dress number"
@@ -107,28 +110,6 @@ const AddPlayerPage = () => {
           register={register}
           placeholder="https://www.arsenal.com/sites/default/files/styles/large_16x9/public/images/Headshot_Saka_1510x850_0.jpg"
           errorMessage={errors?.pictureURL?.message}
-        />
-        <label className="form-control w-full max-w-xs">
-          <div className="label">
-            <span className="label-text text-black">Country</span>
-          </div>
-          <select
-            {...register("countryCode")}
-            className="select m-auto block w-full bg-gray-300 font-semibold text-black focus:border-none"
-          >
-            {countryOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <Input
-          name="logoURL"
-          label="Logo url"
-          register={register}
-          placeholder="https://upload.wikimedia.org/wikipedia/hif/8/82/Arsenal_FC.png"
-          errorMessage={errors?.logoURL?.message}
         />
         <button className="btn btn-primary mt-6 text-white">Add</button>
       </form>

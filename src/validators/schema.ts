@@ -1,3 +1,4 @@
+import { PlayerPosition } from "@/seeding/player";
 import { z } from "zod";
 
 export const LeagueSchema = z.object({
@@ -15,13 +16,12 @@ export const LeagueSeasonSchema = z.object({
   leagueId: z.string(), // Foreign key
 });
 
-
 export const ClubSchema = z.object({
   name: z.string().min(1, "Name can't be empty"),
   logoURL: z
     .string()
     .url("Invalid URL")
-    .regex(/\.(jpg|png)$/i, "Mus end with .jpg or .png"),
+    .regex(/\.(jpg|png)$/i, "Must end with .jpg or .png"),
   countryCode: z.string(),
 });
 
@@ -60,12 +60,15 @@ export const ClubSeasonSchema = z.object({
 });
 
 export const PlayerSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+  firstName: z.string().min(1, "First name can't be empty"),
+  lastName: z.string().min(1, "First name can't be empty"),
   dateOfBirth: z.date(),
   position: z.string(),
   dressNumber: z.number().min(1).max(99),
-  pictureURL: z.string(),
+  pictureURL: z
+    .string()
+    .url("Invalid URL")
+    .regex(/\.(jpg|png)$/i, "Must end with .jpg or .png"),
   currentClubId: z.string(), // Foreign key
 });
 

@@ -12,7 +12,7 @@ export const createPlayers = async () => {
       firstName: "Bukayo",
       lastName: "Saka",
       dateOfBirth: new Date(2001, 8, 5),
-      position: "striker",
+      position: PlayerPosition.Forward,
       dressNumber: 7,
       pictureURL:
         "https://cdn.shopify.com/s/files/1/0025/8863/9289/files/11-14_480x480.png?v=1661415004",
@@ -25,3 +25,10 @@ export const createPlayers = async () => {
     console.log(`Created player with id ${created.id}`);
   });
 };
+
+export enum PlayerPosition {
+  Goalkeeper = "Goalkeeper",
+  Defender = "Defender",
+  Midfielder = "Midfielder",
+  Forward = "Forward",
+}
