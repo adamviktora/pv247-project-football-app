@@ -15,8 +15,8 @@ export const PlayerPanel = ({
   const openPlayer = () => {
     router.push(
       seasonId
-        ? "/player/${player.id}?seasonId=${seasonId}"
-        : "/player/${player.id}",
+        ? `/player/${player.id}?seasonId=${seasonId}`
+        : `/player/${player.id}`,
     );
   };
 

@@ -3,15 +3,19 @@
 import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
 import { add } from "@/fetch-helper/CRUD";
-import { ClubCreation, LeagueCreation } from "@/types/creationTypes";
-import { ClubSchema, LeagueSchema } from "@/validators/schema";
+import {
+  ClubCreation,
+  LeagueCreation,
+  PlayerCreation,
+} from "@/types/creationTypes";
+import { ClubSchema, LeagueSchema, PlayerSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Club } from "@prisma/client";
+import { Club, League, Player } from "@prisma/client";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-const AddClubPage = () => {
-  const [newClubName, setNewClubName] = useState("");
+const AddPlayerPage = () => {
+  const [newPlayerName, setNewPlayerNameewClubName] = useState("");
   const [errorText, setErrorText] = useState("");
 
   const {
@@ -19,18 +23,29 @@ const AddClubPage = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ClubCreation>({ resolver: zodResolver(ClubSchema) });
+  } = useForm<PlayerCreation>({ resolver: zodResolver(PlayerSchema) });
 
-  const onSubmit: SubmitHandler<ClubCreation> = async (data) => {
-    const newClub = await add<ClubCreation, Club>("club", data);
-    if (newClub == null) {
+  const onSubmit: SubmitHandler<PlayerCreation> = async (data) => {
+    // {
+    //   firstName: "Bukayo",
+    //   lastName: "Saka",
+    //   dateOfBirth: new Date(2001, 8, 5),
+    //   position: "striker",
+    //   dressNumber: 7,
+    //   pictureURL:
+    //     "https://cdn.shopify.com/s/files/1/0025/8863/9289/files/11-14_480x480.png?v=1661415004",
+    //   currentClubId: arsenalId,
+    // },
+
+    const newPlayer = await add<PlayerCreation, Player>("club", data);
+    if (newPlayer == null) {
       setErrorText("Club with this names already exists");
       setTimeout(() => setErrorText(""), 3000);
       return;
     }
     reset();
-    setNewClubName(newClub.name);
-    setTimeout(() => setNewClubName(""), 3000);
+    setNewPlayerNameewClubName(newPlayer.firstName + newPlayer.lastName);
+    setTimeout(() => setNewPlayerNameewClubName(""), 3000);
   };
 
   const countryOptions = [
@@ -59,11 +74,39 @@ const AddClubPage = () => {
         className="m-auto flex max-w-xs flex-col gap-2"
       >
         <Input
-          name="name"
-          label="Name"
+          name="firstName"
+          label="First name:"
           register={register}
-          placeholder="e.g. Arsenal"
-          errorMessage={errors?.name?.message}
+          placeholder="e.g. John"
+          errorMessage={errors?.firstName?.message}
+        />
+        <Input
+          name="lastName"
+          label="First name"
+          register={register}
+          placeholder="e.g. Doe"
+          errorMessage={errors?.lastName?.message}
+        />
+        <Input
+          name="position"
+          label="Position"
+          register={register}
+          placeholder="e.g. striker"
+          errorMessage={errors?.position?.message}
+        />
+        <Input
+          name="dressNumber"
+          label="Dress number"
+          register={register}
+          placeholder="e.g. 68"
+          errorMessage={errors?.dressNumber?.message}
+        />
+        <Input
+          name="pictureURL"
+          label="Picture url"
+          register={register}
+          placeholder="https://www.arsenal.com/sites/default/files/styles/large_16x9/public/images/Headshot_Saka_1510x850_0.jpg"
+          errorMessage={errors?.pictureURL?.message}
         />
         <label className="form-control w-full max-w-xs">
           <div className="label">
@@ -89,10 +132,10 @@ const AddClubPage = () => {
         />
         <button className="btn btn-primary mt-6 text-white">Add</button>
       </form>
-      {newClubName && (
+      {newPlayerName && (
         <div className="toast toast-center mb-20">
           <div className="alert border-0 bg-secondary-color shadow-md">
-            <span>Club {newClubName} created.</span>
+            <span>Club {newPlayerName} created.</span>
           </div>
         </div>
       )}
@@ -107,4 +150,4 @@ const AddClubPage = () => {
   );
 };
 
-export default AddClubPage;
+export default AddPlayerPage;
