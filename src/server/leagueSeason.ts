@@ -22,6 +22,16 @@ export const addLeagueSeason = async (leagueSeason: LeagueSeasonCreation) => {
     },
   });
 
+  const sameLeagueSeasons = await prisma.leagueSeason.findMany({
+    where: {
+      leagueId: leagueSeason.leagueId,
+      year: leagueSeason.year,
+    },
+  });
+  if (sameLeagueSeasons.length != 0) {
+    return null;
+  }
+
   const newLeagueSeason = await prisma.leagueSeason.create({
     data: leagueSeason,
   });

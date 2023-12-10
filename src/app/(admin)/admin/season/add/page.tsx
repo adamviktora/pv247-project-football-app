@@ -23,6 +23,7 @@ const AddSeasonPage = () => {
 
   const [newSeasonYear, setNewSeasonYear] = useState<number | null>(null);
   const [leagues, setLeagues] = useState<League[]>([]);
+  const [errorText, setErrorText] = useState("");
 
   useEffect(() => {
     const getLeagues = async () => {
@@ -38,6 +39,12 @@ const AddSeasonPage = () => {
       "leagueSeason",
       data,
     );
+    if (newSeason == null) {
+      setErrorText("Season with this league and year");
+      setTimeout(() => setErrorText(""), 3000);
+      return;
+    }
+    reset();
     reset();
     setNewSeasonYear(newSeason.year);
     setTimeout(() => setNewSeasonYear(null), 3000);
@@ -86,6 +93,13 @@ const AddSeasonPage = () => {
             <span>
               Season {newSeasonYear}/{newSeasonYear + 1} created.
             </span>
+          </div>
+        </div>
+      )}
+      {errorText && (
+        <div className="toast toast-center mb-20">
+          <div className="alert border-0 bg-red-400 shadow-md">
+            <span>{errorText}</span>
           </div>
         </div>
       )}

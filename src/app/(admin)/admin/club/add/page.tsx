@@ -34,7 +34,6 @@ const AddClubPage = () => {
   };
 
   const countryOptions = [
-    // TODO: Move somewhere
     { value: "ENG", label: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England" },
     { value: "ESP", label: "🇪🇸 Spain" },
     { value: "GER", label: "🇩🇪 Germany" },
