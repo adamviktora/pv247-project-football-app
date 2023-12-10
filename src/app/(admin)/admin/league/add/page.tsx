@@ -12,6 +12,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 const AddLeaguePage = () => {
   const [newLeagueName, setNewLeagueName] = useState("");
+  const [errorText, setErrorText] = useState("");
 
   const {
     register,
@@ -22,6 +23,11 @@ const AddLeaguePage = () => {
 
   const onSubmit: SubmitHandler<LeagueCreation> = async (data) => {
     const newLeague = await add<LeagueCreation, League>("league", data);
+    if (newLeague == null) {
+      setErrorText("League with this name already exists.");
+      setTimeout(() => setErrorText(""), 3000);
+      return;
+    }
     reset();
     setNewLeagueName(newLeague.name);
     setTimeout(() => setNewLeagueName(""), 3000);
@@ -79,6 +85,13 @@ const AddLeaguePage = () => {
         <div className="toast toast-center mb-20">
           <div className="alert border-0 bg-secondary-color shadow-md">
             <span>League {newLeagueName} created.</span>
+          </div>
+        </div>
+      )}
+      {errorText && (
+        <div className="toast toast-center mb-20">
+          <div className="alert border-0 bg-red-400 shadow-md">
+            <span>{errorText}</span>
           </div>
         </div>
       )}

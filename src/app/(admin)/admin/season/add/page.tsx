@@ -45,7 +45,6 @@ const AddSeasonPage = () => {
       return;
     }
     reset();
-    reset();
     setNewSeasonYear(newSeason.year);
     setTimeout(() => setNewSeasonYear(null), 3000);
   };
