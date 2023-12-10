@@ -1,9 +1,11 @@
 import { ClubSeasonCreation } from "@/types/creationTypes";
-import { Club, ClubSeason, PrismaClient } from "@prisma/client";
+import { Club, ClubSeason, LeagueSeason, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export type ClubSeasonWithClub = ClubSeason & { club: Club };
+export type ClubSeasonWithLeagueSeason = ClubSeason & { leagueSeason: LeagueSeason };
+
 
 export const getClubSeasonsByLeagueSeasonId = async (
   leagueSeasonId: string,
@@ -21,6 +23,25 @@ export const getClubSeasonsByLeagueSeasonId = async (
   });
   return clubSeasons;
 };
+
+export const getClubSeasonsByClub = async (
+  clubId: string,
+) => {
+  const clubSeasons: ClubSeasonWithLeagueSeason[] = await prisma.clubSeason.findMany({
+    where: {
+      clubId: clubId,
+    },
+    include: {
+      leagueSeason: true,
+    },
+    orderBy: {
+      order: "asc",
+    },
+  });
+  return clubSeasons;
+};
+
+
 
 export const addClubSeason = async (clubSeason: ClubSeasonCreation) => {
   await prisma.club.findFirstOrThrow({

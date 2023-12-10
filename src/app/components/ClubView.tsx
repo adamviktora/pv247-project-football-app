@@ -1,6 +1,7 @@
 import { getPlayersByClub } from "@/server/player";
 import { Club } from "@prisma/client";
 import { PlayerPanel } from "./PlayerPanel";
+import TeamSeasons from "./TeamSeasons";
 
 export const ClubView = async ({
   club,
@@ -18,7 +19,7 @@ export const ClubView = async ({
           <img className="max-h-48" src={club.logoURL} alt="|Logo|" />
           <div className="pb-20 text-3xl font-semibold">{club.name}</div>
         </div>
-        <div>TBD: Club season table</div>
+      <TeamSeasons clubId={club.id}/>
       </div>
       <div className="px-48 font-semibold">Squad</div>
       <div className="mx-48 mb-12 flex flex-row overflow-x-auto">
