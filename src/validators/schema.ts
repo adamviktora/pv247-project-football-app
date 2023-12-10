@@ -78,6 +78,7 @@ export const PlayerSchema = z.object({
 export const PlayerSeasonSchema = z.object({
   playerId: z.string(), // Foreign key
   clubSeasonId: z.string(), // Foreign key
+  goalCount: z.number(),
 });
 
 export const AdminLoginSchema = z.object({

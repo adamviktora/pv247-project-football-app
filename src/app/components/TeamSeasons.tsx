@@ -1,4 +1,3 @@
-import { useRouter } from "next/navigation";
 import HeaderCell from "./HeaderCell";
 import { getClubSeasonsByClub } from "@/server/clubSeason";
 
@@ -17,8 +16,9 @@ const TeamSeasons = async ({ clubId }: { clubId: string }) => {
         <tbody className="text-black">
           {clubSeasons.map((clubSeason, index) => (
             <tr key={clubSeason.id} className="odd:bg-white even:bg-gray-200">
-              <td className="text-center px-1 md:px-2 xl:px-6">
-                {clubSeason.leagueSeason.year} / {clubSeason.leagueSeason.year + 1}
+              <td className="px-1 text-center md:px-2 xl:px-6">
+                {clubSeason.leagueSeason.year} /{" "}
+                {clubSeason.leagueSeason.year + 1}
               </td>
               <td className="px-1 text-center md:px-2 xl:px-6">
                 {clubSeason.order}

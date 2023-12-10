@@ -26,7 +26,7 @@ export const ClubRow = ({
       onClick={openClub}
     >
       <td className="w-24 whitespace-nowrap py-3 pl-4 text-left font-semibold md:pl-9">
-        <img className="h-16 m-auto " src={club.logoURL} alt="|Logo|" />
+        <img className="m-auto h-16 " src={club.logoURL} alt="|Logo|" />
       </td>
       <td className="whitespace-nowrap  py-3 pr-4 text-right text-xl font-semibold md:px-9">
         {club.name}

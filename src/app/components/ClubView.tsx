@@ -19,7 +19,7 @@ export const ClubView = async ({
           <img className="max-h-48" src={club.logoURL} alt="|Logo|" />
           <div className="pb-20 text-3xl font-semibold">{club.name}</div>
         </div>
-      <TeamSeasons clubId={club.id}/>
+        <TeamSeasons clubId={club.id} />
       </div>
       <div className="px-48 font-semibold">Squad</div>
       <div className="mx-48 mb-12 flex flex-row overflow-x-auto">

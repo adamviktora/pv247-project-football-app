@@ -1,11 +1,21 @@
-import { ClubSeasonCreation } from "@/types/creationTypes";
-import { Club, ClubSeason, LeagueSeason, PrismaClient } from "@prisma/client";
+import {
+  ClubSeasonCreation,
+  PlayerSeasonCreation,
+} from "@/types/creationTypes";
+import {
+  Club,
+  ClubSeason,
+  LeagueSeason,
+  Player,
+  PrismaClient,
+} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export type ClubSeasonWithClub = ClubSeason & { club: Club };
-export type ClubSeasonWithLeagueSeason = ClubSeason & { leagueSeason: LeagueSeason };
-
+export type ClubSeasonWithLeagueSeason = ClubSeason & {
+  leagueSeason: LeagueSeason;
+};
 
 export const getClubSeasonsByLeagueSeasonId = async (
   leagueSeasonId: string,
@@ -24,24 +34,21 @@ export const getClubSeasonsByLeagueSeasonId = async (
   return clubSeasons;
 };
 
-export const getClubSeasonsByClub = async (
-  clubId: string,
-) => {
-  const clubSeasons: ClubSeasonWithLeagueSeason[] = await prisma.clubSeason.findMany({
-    where: {
-      clubId: clubId,
-    },
-    include: {
-      leagueSeason: true,
-    },
-    orderBy: {
-      order: "asc",
-    },
-  });
+export const getClubSeasonsByClub = async (clubId: string) => {
+  const clubSeasons: ClubSeasonWithLeagueSeason[] =
+    await prisma.clubSeason.findMany({
+      where: {
+        clubId: clubId,
+      },
+      include: {
+        leagueSeason: true,
+      },
+      orderBy: {
+        order: "asc",
+      },
+    });
   return clubSeasons;
 };
-
-
 
 export const addClubSeason = async (clubSeason: ClubSeasonCreation) => {
   await prisma.club.findFirstOrThrow({
@@ -59,5 +66,26 @@ export const addClubSeason = async (clubSeason: ClubSeasonCreation) => {
   const newClubSeason = await prisma.clubSeason.create({
     data: clubSeason,
   });
+
+  // Create PlayerSeasons for all club's players
+  console.log("Creating PlayerSeasons");
+  const seasonsPlayers: Player[] = await prisma.player.findMany({
+    where: {
+      currentClubId: clubSeason.clubId,
+    },
+  });
+
+  seasonsPlayers.forEach(async (player: Player) => {
+    const playerSeason: PlayerSeasonCreation = {
+      clubSeasonId: newClubSeason.id,
+      playerId: player.id,
+      goalCount: 0,
+    };
+
+    const newPlayerSeason = await prisma.playerSeason.create({
+      data: playerSeason,
+    });
+  });
+
   return newClubSeason;
 };
