@@ -5,9 +5,9 @@ const TeamSeasons = async ({ clubId }: { clubId: string }) => {
   const clubSeasons = await getClubSeasonsByClub(clubId);
 
   return (
-    <div className="max-h-96 w-64 overflow-x-auto shadow-md sm:rounded-lg ">
-      <table className="w-full text-left text-xs text-gray-500 md:text-sm ">
-        <thead className="sticky h-9 bg-primary-color text-xs uppercase text-white">
+    <div className="my-4 max-h-36 w-72 overflow-x-auto rounded-lg shadow-md ">
+      <table className="w-full text-left  text-sm text-gray-500 ">
+        <thead className="sticky top-0 h-9 bg-primary-color text-xs uppercase text-white">
           <tr className="">
             <HeaderCell text="Season" />
             <HeaderCell text="Position" />
@@ -26,7 +26,7 @@ const TeamSeasons = async ({ clubId }: { clubId: string }) => {
             </tr>
           ))}
         </tbody>
-        <tfoot className="h-3 bg-primary-color text-xs uppercase text-white">
+        <tfoot className="sticky bottom-0 h-3 bg-primary-color text-xs uppercase text-white">
           <tr>
             <td></td>
             <td></td>

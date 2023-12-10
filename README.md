@@ -8,7 +8,7 @@
   - Club list - DONE
   - Games list - DONE
   - Leaderboard - DONE
-  - Club detail
+  - Club detail - DONE
   - Player detail
   - Top panel
 - Admin mode:
