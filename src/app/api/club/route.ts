@@ -1,10 +1,15 @@
-import { addClub, getClubs, getClubsByLeagueSeasonId } from "@/server/club";
+import { addClub, getClubs, getClubsByCountryCode, getClubsByLeagueSeasonId } from "@/server/club";
 import { ClubCreation } from "@/types/creationTypes";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   const leagueSeasonId = req.nextUrl.searchParams.get("leagueSeasonId");
+  const countryCode = req.nextUrl.searchParams.get("countryCode");
 
+  if (countryCode !== null){
+    return  Response.json(await getClubsByCountryCode(countryCode));
+  }
+  
   const clubs =
     leagueSeasonId === null
       ? await getClubs()

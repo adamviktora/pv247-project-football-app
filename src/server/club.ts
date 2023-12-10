@@ -25,6 +25,15 @@ export const getClubsByLeagueSeasonId = async (leagueSeasonId: string) => {
   return clubs;
 };
 
+export const getClubsByCountryCode = async (countryCode: string) => {
+  const clubs: Club[] = await prisma.club.findMany({
+    where: {
+      countryCode: countryCode
+    },
+  });
+  return clubs;
+};
+
 export const getClubById = async (id: string) => {
   const club: ClubDetails = await prisma.club.findFirstOrThrow({
     where: {

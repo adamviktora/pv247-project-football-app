@@ -11,6 +11,15 @@
   - Club detail
   - Player detail
   - Top panel
+- Admin mode:
+  - ClubCreation - DONE
+  - ClubSeasonCreation - DONE
+  - GameCreation
+  - GoalCreation
+  - LeagueCreation - DONE
+  - LeagueSeasonCreation - DONE
+  - PlayerCreation - In progress
+  - PlayerSeasonCreation  
 - Player detail
 - Club detail (seasons table)
 
