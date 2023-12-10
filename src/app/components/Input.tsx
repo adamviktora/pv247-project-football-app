@@ -8,6 +8,7 @@ type InputProps = {
   type?: string;
   register: UseFormRegister<any>;
   errorMessage?: string;
+  validationOptions?: Object;
 };
 
 const Input = ({
@@ -17,6 +18,7 @@ const Input = ({
   type,
   register,
   errorMessage,
+  validationOptions,
 }: InputProps) => {
   return (
     <label className="form-control w-full max-w-xs">
@@ -24,7 +26,7 @@ const Input = ({
         <span className="label-text">{label}</span>
       </div>
       <input
-        {...register(name)}
+        {...register(name, validationOptions)}
         type={type ?? "text"}
         placeholder={placeholder ?? "Type here"}
         className="input input-bordered w-full max-w-xs"

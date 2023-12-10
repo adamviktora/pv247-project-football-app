@@ -126,6 +126,9 @@ const AddPlayerPage = () => {
           name="dressNumber"
           label="Dress number"
           register={register}
+          validationOptions={{
+            setValueAs: (value: string) => Number(value),
+          }}
           placeholder="e.g. 68"
           errorMessage={errors?.dressNumber?.message}
         />

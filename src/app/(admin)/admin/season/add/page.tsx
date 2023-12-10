@@ -55,8 +55,11 @@ const AddSeasonPage = () => {
       >
         <Input
           name="year"
-          label="Year"
           register={register}
+          validationOptions={{
+            setValueAs: (value: string) => Number(value),
+          }}
+          label="Year"
           placeholder={`e.g. ${new Date().getFullYear()}`}
           errorMessage={errors?.year?.message}
         />
