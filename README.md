@@ -18,8 +18,8 @@
   - GoalCreation
   - LeagueCreation - DONE
   - LeagueSeasonCreation - DONE
-  - PlayerCreation - In progress
-  - PlayerSeasonCreation  
+  - PlayerCreation - DONE (better DatePicker?)
+  - PlayerSeasonCreation
 - Player detail
 - Club detail (seasons table)
 

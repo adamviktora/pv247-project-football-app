@@ -28,7 +28,7 @@ export const getClubsByLeagueSeasonId = async (leagueSeasonId: string) => {
 export const getClubsByCountryCode = async (countryCode: string) => {
   const clubs: Club[] = await prisma.club.findMany({
     where: {
-      countryCode: countryCode
+      countryCode: countryCode,
     },
   });
   return clubs;

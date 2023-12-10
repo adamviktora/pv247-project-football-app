@@ -1,4 +1,5 @@
 import { PlayerPosition } from "@/seeding/player";
+import { getAgeLimit } from "@/utils/date";
 import { z } from "zod";
 
 export const LeagueSchema = z.object({
@@ -62,7 +63,9 @@ export const ClubSeasonSchema = z.object({
 export const PlayerSchema = z.object({
   firstName: z.string().min(1, "First name can't be empty"),
   lastName: z.string().min(1, "First name can't be empty"),
-  dateOfBirth: z.date(),
+  dateOfBirth: z
+    .date()
+    .max(getAgeLimit(15), { message: "Player is too young" }),
   position: z.string(),
   dressNumber: z.number().min(1).max(99),
   pictureURL: z

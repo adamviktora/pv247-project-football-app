@@ -9,7 +9,7 @@ import { PlayerCreation } from "@/types/creationTypes";
 import { PlayerSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Club, League, LeagueSeason, Player } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const AddPlayerPage = () => {
@@ -21,8 +21,6 @@ const AddPlayerPage = () => {
 
   const [clubs, setClubs] = useState<Club[]>([]);
   const [currentClubId, setCurrentClubId] = useState<string>("");
-
-  currentClubId;
 
   useEffect(() => {
     const getLeagues = async () => {
@@ -101,12 +99,26 @@ const AddPlayerPage = () => {
           placeholder="e.g. Doe"
           errorMessage={errors?.lastName?.message}
         />
-        <Input
-          name="dateOfBirth"
-          label="Date of birth"
-          register={register}
-          errorMessage={errors?.dateOfBirth?.message}
-        />
+
+        <label>
+          <div className="label">
+            <span className="label-text text-black">Date of birth</span>
+          </div>
+          <input
+            {...register("dateOfBirth", {
+              valueAsDate: true,
+            })}
+            type="date"
+            id="datePicker"
+          />
+          {errors?.dateOfBirth?.message && (
+            <div className="label">
+              <span className="label-text-alt text-red-700">
+                {errors?.dateOfBirth?.message}
+              </span>
+            </div>
+          )}
+        </label>
         <label className="form-control w-full max-w-xs">
           <div className="label">
             <span className="label-text text-black">Position</span>
@@ -127,7 +139,7 @@ const AddPlayerPage = () => {
           label="Dress number"
           register={register}
           validationOptions={{
-            setValueAs: (value: string) => Number(value),
+            valueAsNumber: true,
           }}
           placeholder="e.g. 68"
           errorMessage={errors?.dressNumber?.message}

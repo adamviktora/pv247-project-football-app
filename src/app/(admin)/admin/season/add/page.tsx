@@ -5,7 +5,11 @@ import ReturnButton from "@/app/components/ReturnButton";
 import ClubOptions from "@/app/components/server-components/ClubOptions";
 import LeagueOptions from "@/app/components/server-components/LeagueOptions";
 import { add, getAll } from "@/fetch-helper/CRUD";
-import { ClubCreation, ClubSeasonCreation, LeagueSeasonCreation } from "@/types/creationTypes";
+import {
+  ClubCreation,
+  ClubSeasonCreation,
+  LeagueSeasonCreation,
+} from "@/types/creationTypes";
 import { ClubSeasonSchema, LeagueSeasonSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Club, ClubSeason, League, LeagueSeason } from "@prisma/client";
@@ -83,7 +87,7 @@ const AddSeasonPage = () => {
     // Use list of teams ID to add them to league
     // After selecting teams and clicking button, create ClubSeasons for each team
 
-    selectedClubs.forEach(clubId => {
+    selectedClubs.forEach((clubId) => {
       const newClubSeason: ClubSeasonCreation = {
         order: 0,
         points: 0,
@@ -95,18 +99,17 @@ const AddSeasonPage = () => {
         goalsScoredCount: 0,
         clubId: clubId,
         leagueSeasonId: newSeason.id,
-      }
+      };
 
       const createClubSeason = async (clubSeason: ClubSeasonCreation) => {
         const createdClubSeason = await add<ClubSeasonCreation, ClubSeason>(
           "clubSeason",
           clubSeason,
         );
-        console.log("Created club season with id: ", createdClubSeason.id)
+        console.log("Created club season with id: ", createdClubSeason.id);
       };
-      createClubSeason(newClubSeason)
-    }
-    );
+      createClubSeason(newClubSeason);
+    });
 
     reset();
     setNewSeasonYear(newSeason.year);
@@ -127,7 +130,7 @@ const AddSeasonPage = () => {
           name="year"
           register={register}
           validationOptions={{
-            setValueAs: (value: string) => Number(value),
+            valueAsNumber: true,
           }}
           label="Year"
           placeholder={`e.g. ${new Date().getFullYear()}`}
