@@ -69,7 +69,7 @@ export const PlayerSchema = z.object({
     .string()
     .url("Invalid URL")
     .regex(/\.(jpg|png)$/i, "Must end with .jpg or .png"),
-  currentClubId: z.string(), // Foreign key
+  currentClubId: z.string().min(1, "Player's team must be selected"), // Foreign key
 });
 
 export const PlayerSeasonSchema = z.object({
