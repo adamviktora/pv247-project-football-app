@@ -83,9 +83,6 @@ const AddSeasonPage = () => {
       setTimeout(() => setErrorText(""), 3000);
       return;
     }
-    // TODO: Select teams
-    // Use list of teams ID to add them to league
-    // After selecting teams and clicking button, create ClubSeasons for each team
 
     selectedClubs.forEach((clubId) => {
       const newClubSeason: ClubSeasonCreation = {

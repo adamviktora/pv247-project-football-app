@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Providers } from "./Providers";
 import "../../node_modules/flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="mytheme">
       <body className={inter.className}>
-        <div className="flex min-h-screen flex-col">{children}</div>
+        <Providers>
+          <div className="flex min-h-screen flex-col">{children}</div>
+        </Providers>
       </body>
     </html>
   );

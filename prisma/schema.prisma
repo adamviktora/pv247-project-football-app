@@ -109,3 +109,11 @@ model PlayerSeason {
   player       Player     @relation(fields: [playerId], references: [id])
   clubSeason   ClubSeason @relation(fields: [clubSeasonId], references: [id])
 }
+
+// Auth.js
+model Admin {
+  id       String   @id @default(uuid())
+  email    String   @unique
+  password String
+}
+
