@@ -1,6 +1,7 @@
 "use client";
 
 import Input from "@/app/components/Input";
+import Loading from "@/app/components/Loading";
 import ReturnButton from "@/app/components/ReturnButton";
 import LeagueOptions from "@/app/components/server-components/LeagueOptions";
 import { add, getAll } from "@/fetch-helper/CRUD";
@@ -167,7 +168,7 @@ const AddPlayerPage = () => {
               <LeagueOptions leagues={leagues} />
             </select>
           ) : (
-            <span className="loading loading-dots loading-md"></span>
+            <Loading />
           )}
         </label>
         <label className="form-control w-full max-w-xs">

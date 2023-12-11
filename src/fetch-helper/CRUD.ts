@@ -27,3 +27,14 @@ export const remove = async (entity: Entity, id: string) => {
   const response = await fetch(`/api/${entity}/${id}`, { method: "DELETE" });
   return response;
 };
+
+export const getAllFilteredById = async <RETURN>(
+  entity: Entity,
+  filter: Entity,
+  id: string,
+) => {
+  const response = await fetch(`/api/${entity}?${filter}Id=${id}`, {
+    method: "GET",
+  });
+  return (await response.json()) as RETURN[];
+};

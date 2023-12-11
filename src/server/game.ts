@@ -60,6 +60,7 @@ export const addGame = async (game: GameCreation) => {
   const newGame = await prisma.game.create({
     data: game,
   });
+  // TODO Update club season after creating game
   return newGame;
 };
 
