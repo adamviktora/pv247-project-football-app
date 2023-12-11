@@ -27,12 +27,12 @@ const PlayerDetail = async ({
   );
 
   return (
-    <div className=" flex flex-col">
-      <div className="m-4">
+    <div className="m-auto flex w-full flex-col md:w-[48rem] xl:w-2/3">
+      <div className="m-1 md:m-4">
         <ReturnButton />
       </div>
-      <div className=" flex flex-row items-center justify-between px-48 py-12">
-        <div className="flex flex-row items-center space-x-8">
+      <div className="flex flex-col justify-between py-1 md:flex-row md:py-12">
+        <div className="flex flex-row items-center space-x-2 md:space-x-8">
           <img
             className="p4 max-h-48 rounded-lg border-[10px] border-primary-color bg-white"
             src={player.pictureURL}
@@ -58,25 +58,24 @@ const PlayerDetail = async ({
         </div>
         <div className="flex flex-col space-y-4">
           <div>
-            <div>
-              <span>Season</span>
-              <PlayerSaeasonSelect
-                playerId={player.id}
-                seasonId={searchParams.seasonId}
-                seasons={playerLeagueSeasons}
-              />
-            </div>
+            <span className="ml-6 md:m-0">Season</span>
+            <PlayerSaeasonSelect
+              playerId={player.id}
+              seasonId={searchParams.seasonId}
+              seasons={playerLeagueSeasons}
+            />
           </div>
           <div>
-            {/* TODO: Reformat for more beautiful page */}
-            Goals:
-            {currentClubSeason !== undefined
-              ? currentClubSeason.goalCount
-              : "-"}{" "}
+            <div className="ml-6 md:m-0">Goals</div>
+            <div className="m-auto mb-2 text-center">
+              {currentClubSeason !== undefined
+                ? currentClubSeason.goalCount
+                : "-"}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mx-48 mb-12 flex flex-col space-y-3 px-4">
+      <div className="m-auto flex flex-col space-y-3 px-4 pb-4 md:mx-0 md:pb-12 ">
         <LabeledField label="Current club" content={player.currentClub.name} />
         <img className="w-24" src={player.currentClub.logoURL} alt="|Logo|" />
       </div>

@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import ReturnButton from "./ReturnButton";
 import Select from "./Select";
+import { useMediaQuery } from "usehooks-ts";
 
 type TopBarProps = {
   leagueId?: string;
@@ -21,6 +22,8 @@ const TopBar = ({
   seasonOptions,
   clubOptions,
 }: TopBarProps) => {
+  const isMobile = !useMediaQuery("(min-width: 768px)");
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -41,7 +44,7 @@ const TopBar = ({
           {seasonOptions}
         </Select>
       </div>
-      {pathname !== "/club" && (
+      {pathname !== "/club" && !isMobile && (
         <div className="flex space-x-4">
           <Link
             className={`py-1 ${

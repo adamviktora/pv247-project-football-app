@@ -24,7 +24,11 @@ const PlayerSaeasonSelect = ({
           router.replace(`/player/${playerId}?seasonId=${e.target.value}`);
         }}
       >
-        <SeasonOptions seasons={seasons} />
+        {seasons.length == 0 ? (
+          <option value="">No seasons</option>
+        ) : (
+          <SeasonOptions seasons={seasons} />
+        )}
       </Select>
     </>
   );

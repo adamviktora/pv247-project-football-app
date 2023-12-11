@@ -9,8 +9,8 @@
   - Games list - DONE
   - Leaderboard - DONE
   - Club detail - DONE
-  - Player detail
-  - Top panel
+  - Player detail - DONE
+  - Top panel - DONE
 - Admin mode:
   - ClubCreation - DONE
   - ClubSeasonCreation - DONE
@@ -18,7 +18,7 @@
   - GoalCreation
   - LeagueCreation - DONE
   - LeagueSeasonCreation - DONE
-  - PlayerCreation - DONE (better DatePicker?)
+  - PlayerCreation - DONE
   - PlayerSeasonCreation - DONE
 - Player detail - DONE
 - Club detail - DONE
