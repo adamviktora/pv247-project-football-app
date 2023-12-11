@@ -1,3 +1,4 @@
+import { getServerAuthSession } from "@/server/auth";
 import {
   addClubSeason,
   getClubSeasonsByLeagueSeasonId,
@@ -21,6 +22,14 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const status = await getServerAuthSession();
+  if (!status) {
+    return new Response(null, {
+      status: 401,
+      statusText: "Unauthorized",
+    });
+  }
+
   const clubSeason = (await req.json()) as ClubSeasonCreation;
 
   const newClubSeason = await addClubSeason(clubSeason);

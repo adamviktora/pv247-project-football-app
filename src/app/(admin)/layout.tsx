@@ -11,7 +11,6 @@ export default async function BasicLayout({
 }) {
   const status = await getServerAuthSession();
   if (!status) {
-    // User unauthenticated, redirect to home
     redirect("/login");
   }
 
