@@ -45,8 +45,6 @@ const AddLeaguePage = () => {
     { value: "ARG", label: "🇦🇷 Argentina" },
   ];
 
-  const label = "Name";
-
   return (
     <div>
       <div className="relative">

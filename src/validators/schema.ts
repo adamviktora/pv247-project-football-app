@@ -1,4 +1,3 @@
-import { PlayerPosition } from "@/seeding/player";
 import { getAgeLimit } from "@/utils/date";
 import { z } from "zod";
 
@@ -22,7 +21,7 @@ export const ClubSchema = z.object({
   logoURL: z
     .string()
     .url("Invalid URL")
-    .regex(/\.(jpg|png)$/i, "Must end with .jpg or .png"),
+    .regex(/\.(jpg|jpeg|png)$/i, "Must end with .jpg, .jpeg or .png"),
   countryCode: z.string(),
 });
 
@@ -67,11 +66,16 @@ export const PlayerSchema = z.object({
     .date()
     .max(getAgeLimit(15), { message: "Player is too young" }),
   position: z.string(),
-  dressNumber: z.number().min(1).max(99),
+  dressNumber: z
+    .number({
+      invalid_type_error: "Please fill in a number",
+    })
+    .min(1, "Number must be between 1 and 99")
+    .max(99, "Number must be between 1 and 99"),
   pictureURL: z
     .string()
     .url("Invalid URL")
-    .regex(/\.(jpg|png)$/i, "Must end with .jpg or .png"),
+    .regex(/\.(jpg|jpeg|png)$/i, "Must end with .jpg, .jpeg or .png"),
   currentClubId: z.string().min(1, "Player's team must be selected"), // Foreign key
 });
 

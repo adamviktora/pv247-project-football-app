@@ -3,8 +3,8 @@
 import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
 import { add } from "@/fetch-helper/CRUD";
-import { ClubCreation, LeagueCreation } from "@/types/creationTypes";
-import { ClubSchema, LeagueSchema } from "@/validators/schema";
+import { ClubCreation } from "@/types/creationTypes";
+import { ClubSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Club } from "@prisma/client";
 import { useState } from "react";
@@ -44,8 +44,6 @@ const AddClubPage = () => {
     { value: "BEL", label: "🇧🇪 Belgium" },
     { value: "ARG", label: "🇦🇷 Argentina" },
   ];
-
-  const label = "Name";
 
   return (
     <div>

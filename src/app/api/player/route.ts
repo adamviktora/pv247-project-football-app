@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
 export async function POST(req: NextRequest) {
   const player = (await req.json()) as PlayerCreation;
 
-  const newPlayer = addPlayer(player);
+  const newPlayer = await addPlayer(player);
 
   return Response.json(newPlayer);
 }

@@ -9,24 +9,30 @@ import { PlayerCreation } from "@/types/creationTypes";
 import { PlayerSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Club, League, LeagueSeason, Player } from "@prisma/client";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const AddPlayerPage = () => {
-  const [newPlayerName, setNewPlayerNameewClubName] = useState("");
+  const [newPlayerName, setNewPlayerName] = useState("");
   const [errorText, setErrorText] = useState("");
 
   const [leagues, setLeagues] = useState<League[]>([]);
-  const [selectedLeagueId, setSelectedLeague] = useState<string>("");
-
+  const [selectedLeagueId, setSelectedLeagueId] = useState<string>("");
   const [clubs, setClubs] = useState<Club[]>([]);
-  const [currentClubId, setCurrentClubId] = useState<string>("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+  } = useForm<PlayerCreation>({ resolver: zodResolver(PlayerSchema) });
 
   useEffect(() => {
     const getLeagues = async () => {
       const leagues = await getAll<League>("league");
       setLeagues(leagues);
-      setSelectedLeague(leagues[0].id);
+      setSelectedLeagueId(leagues[0].id);
     };
     getLeagues();
   }, []);
@@ -41,38 +47,33 @@ const AddPlayerPage = () => {
       const seasons: LeagueSeason[] = await response.json();
 
       if (seasons.length) {
-        const fetchedId = seasons[0].id;
-
         const club_response = await fetch(
-          `/api/club?leagueSeasonId=${fetchedId}`,
+          `/api/club?leagueSeasonId=${seasons[0].id}`,
         );
         const clubs: Club[] = await club_response.json();
-        console.log(clubs);
         setClubs(clubs);
+        setValue("currentClubId", clubs[0]?.id ?? "");
       } else {
         setClubs([]);
+        setValue("currentClubId", "");
       }
     };
     getClubs();
-  }, [selectedLeagueId]);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<PlayerCreation>({ resolver: zodResolver(PlayerSchema) });
+  }, [selectedLeagueId, setValue]);
 
   const onSubmit: SubmitHandler<PlayerCreation> = async (data) => {
     const newPlayer = await add<PlayerCreation, Player>("player", data);
+
     if (newPlayer == null) {
-      setErrorText("Club with this names already exists");
+      setErrorText(
+        `This club already has a player named ${data.firstName} ${data.lastName}`,
+      );
       setTimeout(() => setErrorText(""), 3000);
       return;
     }
     reset();
-    setNewPlayerNameewClubName(newPlayer.firstName + newPlayer.lastName);
-    setTimeout(() => setNewPlayerNameewClubName(""), 3000);
+    setNewPlayerName(`${newPlayer.firstName} ${newPlayer.lastName}`);
+    setTimeout(() => setNewPlayerName(""), 3000);
   };
 
   return (
@@ -87,14 +88,14 @@ const AddPlayerPage = () => {
       >
         <Input
           name="firstName"
-          label="First name:"
+          label="First name"
           register={register}
           placeholder="e.g. John"
           errorMessage={errors?.firstName?.message}
         />
         <Input
           name="lastName"
-          label="First name"
+          label="Last name"
           register={register}
           placeholder="e.g. Doe"
           errorMessage={errors?.lastName?.message}
@@ -110,6 +111,7 @@ const AddPlayerPage = () => {
             })}
             type="date"
             id="datePicker"
+            className="w-full rounded-full border-[1px] border-gray-300 bg-transparent px-4 py-3 outline-2 outline-offset-2 outline-gray-300 focus:outline focus:ring-0"
           />
           {errors?.dateOfBirth?.message && (
             <div className="label">
@@ -159,7 +161,7 @@ const AddPlayerPage = () => {
             <select
               className="select m-auto block w-full bg-gray-300 font-semibold text-black focus:border-none"
               onChange={(event) => {
-                setSelectedLeague(event.target.value);
+                setSelectedLeagueId(event.target.value);
               }}
             >
               <LeagueOptions leagues={leagues} />
@@ -199,7 +201,7 @@ const AddPlayerPage = () => {
         </label>
         <button className="btn btn-primary mt-6 text-white">Add</button>
       </form>
-      {newPlayerName && (
+      {newPlayerName !== "" && (
         <div className="toast toast-center mb-20">
           <div className="alert border-0 bg-secondary-color shadow-md">
             <span>Player {newPlayerName} created.</span>
