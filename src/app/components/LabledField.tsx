@@ -3,7 +3,7 @@ const LabeledField = ({
   content,
 }: {
   label: string;
-  content: string;
+  content: any;
 }) => (
   <div className="flex flex-col">
     <div className="text-sm">{label}</div>
