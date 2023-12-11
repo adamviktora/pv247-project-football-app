@@ -17,14 +17,16 @@ const PlayerSaeasonSelect = ({
   const router = useRouter();
 
   return (
-    <Select
-      selectedValue={seasonId}
-      onChange={(e) => {
-        router.replace(`/player/${playerId}?seasonId=${seasonId}`);
-      }}
-    >
-      <SeasonOptions seasons={seasons} />
-    </Select>
+    <>
+      <Select
+        selectedValue={seasonId}
+        onChange={(e) => {
+          router.replace(`/player/${playerId}?seasonId=${e.target.value}`);
+        }}
+      >
+        <SeasonOptions seasons={seasons} />
+      </Select>
+    </>
   );
 };
 export default PlayerSaeasonSelect;

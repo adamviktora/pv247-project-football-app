@@ -8,11 +8,20 @@
   - Club list - DONE
   - Games list - DONE
   - Leaderboard - DONE
-  - Club detail
+  - Club detail - DONE
   - Player detail
   - Top panel
-- Player detail
-- Club detail (seasons table)
+- Admin mode:
+  - ClubCreation - DONE
+  - ClubSeasonCreation - DONE
+  - GameCreation
+  - GoalCreation
+  - LeagueCreation - DONE
+  - LeagueSeasonCreation - DONE
+  - PlayerCreation - DONE (better DatePicker?)
+  - PlayerSeasonCreation - DONE
+- Player detail - DONE
+- Club detail - DONE
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

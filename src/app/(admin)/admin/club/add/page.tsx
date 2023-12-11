@@ -3,15 +3,15 @@
 import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
 import { add } from "@/fetch-helper/CRUD";
-import { LeagueCreation } from "@/types/creationTypes";
-import { LeagueSchema } from "@/validators/schema";
+import { ClubCreation } from "@/types/creationTypes";
+import { ClubSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { League } from "@prisma/client";
+import { Club } from "@prisma/client";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-const AddLeaguePage = () => {
-  const [newLeagueName, setNewLeagueName] = useState("");
+const AddClubPage = () => {
+  const [newClubName, setNewClubName] = useState("");
   const [errorText, setErrorText] = useState("");
 
   const {
@@ -19,18 +19,18 @@ const AddLeaguePage = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<LeagueCreation>({ resolver: zodResolver(LeagueSchema) });
+  } = useForm<ClubCreation>({ resolver: zodResolver(ClubSchema) });
 
-  const onSubmit: SubmitHandler<LeagueCreation> = async (data) => {
-    const newLeague = await add<LeagueCreation, League>("league", data);
-    if (newLeague == null) {
-      setErrorText("League with this name already exists.");
+  const onSubmit: SubmitHandler<ClubCreation> = async (data) => {
+    const newClub = await add<ClubCreation, Club>("club", data);
+    if (newClub == null) {
+      setErrorText("Club with this names already exists");
       setTimeout(() => setErrorText(""), 3000);
       return;
     }
     reset();
-    setNewLeagueName(newLeague.name);
-    setTimeout(() => setNewLeagueName(""), 3000);
+    setNewClubName(newClub.name);
+    setTimeout(() => setNewClubName(""), 3000);
   };
 
   const countryOptions = [
@@ -50,7 +50,7 @@ const AddLeaguePage = () => {
       <div className="relative">
         <ReturnButton standalone />
       </div>
-      <h1 className="my-7 text-center text-3xl">Add League</h1>
+      <h1 className="my-7 text-center text-3xl">Add Club</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="m-auto flex max-w-xs flex-col gap-2"
@@ -59,7 +59,7 @@ const AddLeaguePage = () => {
           name="name"
           label="Name"
           register={register}
-          placeholder="e.g. Bundesliga"
+          placeholder="e.g. Arsenal"
           errorMessage={errors?.name?.message}
         />
         <label className="form-control w-full max-w-xs">
@@ -77,12 +77,19 @@ const AddLeaguePage = () => {
             ))}
           </select>
         </label>
+        <Input
+          name="logoURL"
+          label="Logo url"
+          register={register}
+          placeholder="https://upload.wikimedia.org/wikipedia/hif/8/82/Arsenal_FC.png"
+          errorMessage={errors?.logoURL?.message}
+        />
         <button className="btn btn-primary mt-6 text-white">Add</button>
       </form>
-      {newLeagueName && (
+      {newClubName && (
         <div className="toast toast-center mb-20">
           <div className="alert border-0 bg-secondary-color shadow-md">
-            <span>League {newLeagueName} created.</span>
+            <span>Club {newClubName} created.</span>
           </div>
         </div>
       )}
@@ -97,4 +104,4 @@ const AddLeaguePage = () => {
   );
 };
 
-export default AddLeaguePage;
+export default AddClubPage;

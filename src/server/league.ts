@@ -8,6 +8,15 @@ export const getLeagues = async () => {
 };
 
 export const addLeague = async (league: LeagueCreation) => {
+  const sameLeagues = await prisma.league.findMany({
+    where: {
+      name: league.name,
+    },
+  });
+  if (sameLeagues.length != 0) {
+    return null;
+  }
+
   const newLeague = await prisma.league.create({
     data: league,
   });

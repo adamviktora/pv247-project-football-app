@@ -8,7 +8,7 @@ export default function BasicLayout({
   return (
     <>
       <header className="flex h-24 items-center justify-between bg-black px-12 text-white">
-        <Link className="text-3xl font-bold hover:text-gray-300" href="/">
+        <Link className="text-3xl font-bold hover:text-gray-300" href="/admin">
           Football Results
         </Link>
         <span className="text-3xl font-semibold italic">Admin mode</span>

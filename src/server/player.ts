@@ -4,6 +4,7 @@ import {
   ClubSeason,
   LeagueSeason,
   Player,
+  PlayerSeason,
   PrismaClient,
 } from "@prisma/client";
 
@@ -14,8 +15,6 @@ type PlayerWithSeasons = Player & {
   playerSeasons: {
     goalCount: number;
     clubSeason: {
-      club: Club;
-      id: string;
       leagueSeason: LeagueSeason;
     };
   }[];
@@ -29,20 +28,13 @@ export const getPlayerById = async (id: string) => {
     include: {
       currentClub: true,
       playerSeasons: {
-        select: {
-          goalCount: true,
-          clubSeason: {
-            select: {
-              club: true,
-              id: true,
-              leagueSeason: true,
-            },
-          },
+        where: {
+          playerId: id,
         },
-        orderBy: {
+        include: {
           clubSeason: {
-            leagueSeason: {
-              year: "desc",
+            include: {
+              leagueSeason: true,
             },
           },
         },

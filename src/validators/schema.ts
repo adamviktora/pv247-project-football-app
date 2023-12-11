@@ -1,3 +1,4 @@
+import { getAgeLimit } from "@/utils/date";
 import { z } from "zod";
 
 export const LeagueSchema = z.object({
@@ -16,8 +17,11 @@ export const LeagueSeasonSchema = z.object({
 });
 
 export const ClubSchema = z.object({
-  name: z.string(),
-  logoURL: z.string(),
+  name: z.string().min(1, "Name can't be empty"),
+  logoURL: z
+    .string()
+    .url("Invalid URL")
+    .regex(/\.(jpg|jpeg|png)$/i, "Must end with .jpg, .jpeg or .png"),
   countryCode: z.string(),
 });
 
@@ -56,18 +60,29 @@ export const ClubSeasonSchema = z.object({
 });
 
 export const PlayerSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  dateOfBirth: z.date(),
+  firstName: z.string().min(1, "First name can't be empty"),
+  lastName: z.string().min(1, "First name can't be empty"),
+  dateOfBirth: z
+    .date()
+    .max(getAgeLimit(15), { message: "Player is too young" }),
   position: z.string(),
-  dressNumber: z.number().min(1).max(99),
-  pictureURL: z.string(),
-  currentClubId: z.string(), // Foreign key
+  dressNumber: z
+    .number({
+      invalid_type_error: "Please fill in a number",
+    })
+    .min(1, "Number must be between 1 and 99")
+    .max(99, "Number must be between 1 and 99"),
+  pictureURL: z
+    .string()
+    .url("Invalid URL")
+    .regex(/\.(jpg|jpeg|png)$/i, "Must end with .jpg, .jpeg or .png"),
+  currentClubId: z.string().min(1, "Player's team must be selected"), // Foreign key
 });
 
 export const PlayerSeasonSchema = z.object({
   playerId: z.string(), // Foreign key
   clubSeasonId: z.string(), // Foreign key
+  goalCount: z.number(),
 });
 
 export const AdminLoginSchema = z.object({

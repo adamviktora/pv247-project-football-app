@@ -31,21 +31,23 @@ const ClubDetail = async ({
         seasonOptions={<SeasonOptions seasons={seasons} />}
         clubOptions={<ClubOptions clubs={clubs} />}
       />
-      {searchParams.clubId === "all" ? (
-        <div className="h-full w-full ">
-          <SeasonClubs
-            seasonId={searchParams.seasonId || ""}
-            leagueId={searchParams.leagueId || ""}
-          />
-        </div>
-      ) : (
-        <div className="h-full w-full shadow-sm">
-          <ClubView
-            club={await getClubById(searchParams.clubId)}
-            seasonId={searchParams.seasonId}
-          />
-        </div>
-      )}
+      <div className="w-full">
+        {searchParams.clubId === "all" ? (
+          <div className="h-full w-full ">
+            <SeasonClubs
+              seasonId={searchParams.seasonId || ""}
+              leagueId={searchParams.leagueId || ""}
+            />
+          </div>
+        ) : (
+          <div className="h-full w-full shadow-sm">
+            <ClubView
+              club={await getClubById(searchParams.clubId)}
+              seasonId={searchParams.seasonId}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -6,20 +6,20 @@ import { calculateAge, formatDate } from "@/utils/date";
 import { LeagueSeason } from "@prisma/client";
 
 const PlayerDetail = async ({
-  params,
+  searchParams,
 }: {
-  params: { playerId: string; seasonId?: string };
+  searchParams: { playerId: string; seasonId?: string };
 }) => {
-  const player = await getPlayerById(params.playerId);
+  const player = await getPlayerById(searchParams.playerId);
 
-  // Use last season if not provided (pop works because seasons are ordered in requests by year)
-  if (params.seasonId === undefined) {
-    params.seasonId = player.playerSeasons.pop()?.clubSeason.leagueSeason.id;
+  // Use last season if not provided
+  if (searchParams.seasonId === undefined) {
+    searchParams.seasonId = player.playerSeasons[0].clubSeason.leagueSeason.id;
   }
 
   const currentClubSeason = player.playerSeasons.filter(
     (playerSeason) =>
-      playerSeason.clubSeason.leagueSeason.id == params.seasonId,
+      playerSeason.clubSeason.leagueSeason.id == searchParams.seasonId,
   )[0];
 
   const playerLeagueSeasons: LeagueSeason[] = player.playerSeasons.map(
@@ -56,19 +56,20 @@ const PlayerDetail = async ({
             <LabeledField label="Position" content={player.position} />
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col space-y-4">
           <div>
             <div>
-              Season:{" "}
+              <span>Season</span>
               <PlayerSaeasonSelect
                 playerId={player.id}
-                seasonId={params.playerId}
+                seasonId={searchParams.seasonId}
                 seasons={playerLeagueSeasons}
               />
             </div>
           </div>
           <div>
-            Goals:{" "}
+            {/* TODO: Reformat for more beautiful page */}
+            Goals:
             {currentClubSeason !== undefined
               ? currentClubSeason.goalCount
               : "-"}{" "}

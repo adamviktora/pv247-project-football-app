@@ -11,3 +11,10 @@ export const calculateAge = (birthday: Date) => {
   const yearsDifference = timeDifference / (365.25 * 24 * 60 * 60 * 1000);
   return Math.floor(yearsDifference);
 };
+
+export const getAgeLimit = (minAge: number) => {
+  const todaysDate = new Date();
+  const maxBirthday = new Date(todaysDate);
+  maxBirthday.setFullYear(todaysDate.getFullYear() - 15);
+  return maxBirthday;
+};
