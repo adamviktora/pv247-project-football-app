@@ -263,13 +263,9 @@ const AddGamePage = () => {
                     </LabelWrapper>
                   </div>
                 </div>
-                <div className="mt-8 flex justify-center text-gray-500 max-sm:justify-around max-sm:text-sm sm:gap-56">
-                  <ul className="w-36 text-right sm:w-48">goals home adder</ul>
-                  <ul className="w-36 sm:w-48">goals away adder</ul>
-                </div>
               </div>
               <div className="flex w-full justify-center">
-                <div className="flex max-w-xs grow">
+                <div className="mb-10 flex max-w-xs grow">
                   <button className="btn btn-primary mt-6 w-full text-white">
                     Add
                   </button>
