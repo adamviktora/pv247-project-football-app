@@ -56,7 +56,7 @@ const PlayerDetail = async ({
             <LabeledField label="Position" content={player.position} />
           </div>
         </div>
-        <div className="flex flex-col space-y-4">
+        {/* <div className="flex flex-col space-y-4">
           <div>
             <span className="ml-6 md:m-0">Season</span>
             <PlayerSaeasonSelect
@@ -73,7 +73,7 @@ const PlayerDetail = async ({
                 : "-"}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="m-auto flex flex-col space-y-3 px-4 pb-4 md:mx-0 md:pb-12 ">
         <LabeledField label="Current club" content={player.currentClub.name} />
