@@ -1,20 +1,12 @@
-# TODO:
+# Football manager app
 
-- Admin mode
-- Login system
-- Responsive design
-  - Main menu - DONE
-  - Game detail - DONE (fix margin)
-  - Club list - DONE
-  - Games list - DONE
-  - Leaderboard - DONE
-  - Club detail
-  - Player detail
-  - Top panel
-- Player detail
-- Club detail (seasons table)
+This is an repository with NextJS application for managment of football results.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Applicaiton has two mode -> defaullt and admin.
+
+In defailt mode, anyone can observer detauled results about different types of Football Leagues.
+
+In admin mode, registered admin can input data about played matches or even create completely new leagues.
 
 ## Backend
 
