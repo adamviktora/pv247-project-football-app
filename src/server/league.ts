@@ -1,5 +1,5 @@
 import { LeagueCreation } from "@/types/creationTypes";
-import { prisma } from "./prisma";
+import prisma from "./db";
 
 export const getLeagues = async () => {
   return await prisma.league.findMany();

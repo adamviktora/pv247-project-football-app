@@ -1,6 +1,6 @@
 import { LeagueSeasonCreation } from "@/types/creationTypes";
 import { LeagueSeason } from "@prisma/client";
-import { prisma } from "./prisma";
+import prisma from "./db";
 
 export const getLeagueSeasonsByLeagueId = async (leagueId: string) => {
   const leagueSeasons: LeagueSeason[] = await prisma.leagueSeason.findMany({
