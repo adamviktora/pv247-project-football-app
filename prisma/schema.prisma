@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model League {
@@ -112,8 +113,7 @@ model PlayerSeason {
 
 // Auth.js
 model Admin {
-  id       String   @id @default(uuid())
-  email    String   @unique
+  id       String @id @default(uuid())
+  email    String @unique
   password String
 }
-
