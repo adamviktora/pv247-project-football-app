@@ -61,7 +61,7 @@ export const ClubSeasonSchema = z.object({
 
 export const PlayerSchema = z.object({
   firstName: z.string().min(1, "First name can't be empty"),
-  lastName: z.string().min(1, "First name can't be empty"),
+  lastName: z.string().min(1, "Last name can't be empty"),
   dateOfBirth: z
     .date()
     .max(getAgeLimit(15), { message: "Player is too young" }),

@@ -1,11 +1,10 @@
-import { PrismaClient } from "@prisma/client";
 import {
-  type DefaultSession,
   NextAuthOptions,
   getServerSession,
+  type DefaultSession,
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-const prisma = new PrismaClient();
+import { prisma } from "./prisma";
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
