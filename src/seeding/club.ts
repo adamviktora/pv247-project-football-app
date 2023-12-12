@@ -287,10 +287,140 @@ const serieAClubs: ClubCreation[] = [
   },
 ];
 
+const ligue1Clubs: ClubCreation[] = [
+  {
+    name: "Paris Saint-Germain",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Paris_Saint-Germain_FC.svg/1200px-Paris_Saint-Germain_FC.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Olympique de Marseille",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Olympique_Marseille_logo.svg/1200px-Olympique_Marseille_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "AS Monaco",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/AS_Monaco_FC.svg/1200px-AS_Monaco_FC.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Lille OSC",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/6/62/Logo_LOSC_Lille.svg/1200px-Logo_LOSC_Lille.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Olympique Lyonnais",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Olympique_Lyonnais.svg/1200px-Olympique_Lyonnais.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Stade Rennais FC",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Stade_Rennais_FC.svg/1200px-Stade_Rennais_FC.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "OGC Nice",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/OGC_Nice.svg/1200px-OGC_Nice.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "AS Saint-Étienne",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/AS_Saint-Étienne.svg/1200px-AS_Saint-Étienne.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Girondins de Bordeaux",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/FC_Girondins_de_Bordeaux_logo.svg/1200px-FC_Girondins_de_Bordeaux_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "RC Lens",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/RC_Lens.svg/1200px-RC_Lens.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "FC Nantes",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/FC_Nantes_logo.svg/1200px-FC_Nantes_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Montpellier HSC",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Montpellier_H%C3%A9rault_Sport_Club_logo.svg/1200px-Montpellier_H%C3%A9rault_Sport_Club_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Strasbourg",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Racing_Club_de_Strasbourg_Alsace.svg/1200px-Racing_Club_de_Strasbourg_Alsace.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Angers SCO",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Angers_SCO.svg/1200px-Angers_SCO.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Stade Brestois 29",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/e/ea/Stade_Brestois_29.svg/1200px-Stade_Brestois_29.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Metz",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/7/76/FC_Metz_1921.svg/1200px-FC_Metz_1921.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "FC Lorient",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FC_Lorient_logo.svg/1200px-FC_Lorient_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Dijon FCO",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Dijon_Football_C%C3%B4te-d%27Or.svg/1200px-Dijon_Football_C%C3%B4te-d%27Or.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Nîmes Olympique",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Nimes_Olympique_2019_logo.svg/1200px-Nimes_Olympique_2019_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "AS Nancy Lorraine",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/ASNL_logo.svg/1200px-ASNL_logo.svg.png",
+    countryCode: "FRA",
+  },
+  {
+    name: "Troyes AC",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/ESTAC_Troyes_logo.svg/1200px-ESTAC_Troyes_logo.svg.png",
+    countryCode: "FRA",
+  },
+];
+
 const allClubs: ClubCreation[] = [
   ...premierLeagueClubs,
   ...bundesligaClubs,
   ...serieAClubs,
+  ...ligue1Clubs,
 ];
 
 export const createClubs = () => {

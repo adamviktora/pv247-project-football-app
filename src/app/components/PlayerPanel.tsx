@@ -21,7 +21,10 @@ export const PlayerPanel = ({
   };
 
   return (
-    <div className="m-4 flex flex-col" onClick={openPlayer}>
+    <div
+      className="m-4 flex flex-col hover:cursor-pointer hover:brightness-90"
+      onClick={openPlayer}
+    >
       <div className="rounded-t-2xl bg-primary-color pb-3 pt-3 text-center text-3xl font-bold text-white">
         {player.dressNumber}
       </div>
