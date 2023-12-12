@@ -60,7 +60,97 @@ export const addGame = async (game: GameCreation) => {
   const newGame = await prisma.game.create({
     data: game,
   });
-  // TODO Update club season after creating game
+
+  if (
+    newGame.homeClubGoalCount === null ||
+    newGame.awayClubGoalCount === null
+  ) {
+    return newGame;
+  }
+
+  const homeClubSeason = await prisma.clubSeason.findFirstOrThrow({
+    where: {
+      clubId: game.homeClubId,
+      leagueSeasonId: game.leagueSeasonId,
+    },
+  });
+
+  const awayClubSeason = await prisma.clubSeason.findFirstOrThrow({
+    where: {
+      clubId: game.awayClubId,
+      leagueSeasonId: newGame.leagueSeasonId,
+    },
+  });
+
+  const homeClubGameStatus = {
+    win: newGame.homeClubGoalCount > newGame.awayClubGoalCount ? 1 : 0,
+    draw: newGame.homeClubGoalCount === newGame.awayClubGoalCount ? 1 : 0,
+    lost: newGame.homeClubGoalCount < newGame.awayClubGoalCount ? 1 : 0,
+  };
+
+  const points = {
+    home: homeClubGameStatus.win ? 3 : homeClubGameStatus.draw ? 1 : 0,
+    away: homeClubGameStatus.lost ? 3 : homeClubGameStatus.draw ? 1 : 0,
+  };
+
+  await prisma.clubSeason.update({
+    where: {
+      id: homeClubSeason.id,
+    },
+    data: {
+      gamesPlayedCount: homeClubSeason.gamesPlayedCount + 1,
+      gamesWonCount: homeClubSeason.gamesWonCount + homeClubGameStatus.win,
+      gamesDrawnCount: homeClubSeason.gamesDrawnCount + homeClubGameStatus.draw,
+      gamesLostCount: homeClubSeason.gamesLostCount + homeClubGameStatus.lost,
+      goalsScoredCount:
+        homeClubSeason.goalsScoredCount + newGame.homeClubGoalCount,
+      goalsReceivedCount:
+        homeClubSeason.goalsReceivedCount + newGame.awayClubGoalCount,
+      points: homeClubSeason.points + points.home,
+    },
+  });
+
+  await prisma.clubSeason.update({
+    where: {
+      id: awayClubSeason.id,
+    },
+    data: {
+      gamesPlayedCount: awayClubSeason.gamesPlayedCount + 1,
+      gamesWonCount: awayClubSeason.gamesWonCount + homeClubGameStatus.lost,
+      gamesDrawnCount: awayClubSeason.gamesDrawnCount + homeClubGameStatus.draw,
+      gamesLostCount: awayClubSeason.gamesLostCount + homeClubGameStatus.win,
+      goalsScoredCount:
+        awayClubSeason.goalsScoredCount + newGame.awayClubGoalCount,
+      goalsReceivedCount:
+        awayClubSeason.goalsReceivedCount + newGame.homeClubGoalCount,
+      points: awayClubSeason.points + points.away,
+    },
+  });
+
+  const allClubSeasons = await prisma.clubSeason.findMany({
+    where: {
+      leagueSeasonId: newGame.leagueSeasonId,
+    },
+  });
+
+  const sortedClubSeasons = allClubSeasons
+    .sort((a, b) => b.points - a.points)
+    .map((item, index) => ({
+      ...item,
+      order: index + 1,
+    }));
+
+  for (const clubSeason of sortedClubSeasons) {
+    await prisma.clubSeason.update({
+      where: {
+        id: clubSeason.id,
+      },
+      data: {
+        order: clubSeason.order,
+      },
+    });
+  }
+
   return newGame;
 };
 

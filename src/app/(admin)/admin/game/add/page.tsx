@@ -31,6 +31,7 @@ const AddGamePage = () => {
   const [leagues, setLeagues] = useState<League[] | null>(null);
   const [seasons, setSeasons] = useState<LeagueSeason[] | null>(null);
   const [clubs, setClubs] = useState<Club[] | null>(null);
+  const [showGameCreated, setShowGameCreated] = useState(false);
 
   useEffect(() => {
     const getLeagues = async () => {
@@ -55,6 +56,8 @@ const AddGamePage = () => {
   }, [selectedLeagueId]);
 
   useEffect(() => {
+    console.log(selectedSeasonId);
+
     const getClubs = async () => {
       const clubs = await getAllFilteredById<Club>(
         "club",
@@ -71,6 +74,9 @@ const AddGamePage = () => {
   }, [selectedSeasonId, setValue]);
 
   const onSubmit: SubmitHandler<GameCreation> = async (data: any) => {
+    console.log(selectedSeasonId);
+    console.log(data);
+
     if (data.homeClubId === data.awayClubId) {
       setError("awayClubId", {
         message: "Home Club and Away Club should be different",
@@ -78,8 +84,14 @@ const AddGamePage = () => {
       return;
     }
 
-    const createdGame = await add<GameCreation, Game>("game", data);
+    const createdGame = await add<GameCreation, Game>("game", {
+      ...data,
+      leagueSeasonId: selectedSeasonId,
+    });
     console.log(createdGame);
+
+    setShowGameCreated(true);
+    setTimeout(() => setShowGameCreated(false), 3000);
   };
 
   const LabelWrapper = ({
@@ -267,7 +279,7 @@ const AddGamePage = () => {
           )
         )}
       </form>
-      {false && (
+      {showGameCreated && (
         <div className="toast toast-center mb-20">
           <div className="alert border-0 bg-secondary-color shadow-md">
             <span>Game created.</span>
