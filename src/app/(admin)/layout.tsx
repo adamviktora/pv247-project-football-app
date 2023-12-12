@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { Footer } from "../components/Footer";
-import { redirect } from "next/navigation";
 import { getServerAuthSession } from "@/server/auth";
+import { redirect } from "next/navigation";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 export default async function BasicLayout({

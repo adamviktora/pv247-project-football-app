@@ -1,6 +1,6 @@
 import { ClubCreation } from "@/types/creationTypes";
 import { Club, Player } from "@prisma/client";
-import { prisma } from "./prisma";
+import prisma from "./db";
 
 type ClubDetails = Club & {
   players: Player[];

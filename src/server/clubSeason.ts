@@ -3,7 +3,7 @@ import {
   PlayerSeasonCreation,
 } from "@/types/creationTypes";
 import { Club, ClubSeason, LeagueSeason, Player } from "@prisma/client";
-import { prisma } from "./prisma";
+import prisma from "./db";
 
 export type ClubSeasonWithClub = ClubSeason & { club: Club };
 export type ClubSeasonWithLeagueSeason = ClubSeason & {

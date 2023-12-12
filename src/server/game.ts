@@ -1,7 +1,7 @@
 import { GameCreation, GameWithGoalsCreation } from "@/types/creationTypes";
 import { Club, Game, Goal, LeagueSeason } from "@prisma/client";
+import prisma from "./db";
 import { addGoal } from "./goal";
-import { prisma } from "./prisma";
 
 export type GameWithClubs = Game & { homeClub: Club; awayClub: Club };
 export type GameDetail = GameWithClubs & {
