@@ -25,15 +25,41 @@ export const ClubSchema = z.object({
   countryCode: z.string(),
 });
 
+const parseNumberString = (value: string) => {
+  if (value.trim() === "") {
+    return null;
+  }
+
+  const parsedValue = parseInt(value);
+
+  return isNaN(parsedValue) || parsedValue < 0 ? -1 : parsedValue;
+};
+
+const goalCountParse = z
+  .string()
+  .transform(parseNumberString)
+  .refine((value) => value !== -1, {
+    message: "Goals must be a non-negative number or empty",
+  })
+  .nullable();
+
 export const GameSchema = z.object({
   eventDate: z.date(),
-  round: z.number(),
+  round: z
+    .number({
+      invalid_type_error: "Please fill in a number",
+    })
+    .min(1, "Round must be between 1 and 60")
+    .max(60, "Round must be between 1 and 60"),
   homeClubId: z.string(), // Foreign key
   awayClubId: z.string(), // Foreign key
-  homeClubGoalCount: z.number().nullable(),
-  awayClubGoalCount: z.number().nullable(),
+  homeClubGoalCount: goalCountParse,
+  awayClubGoalCount: goalCountParse,
   leagueSeasonId: z.string(), // Foreign key
 });
+// .refine((data) => data.homeClubId !== data.awayClubId, {
+//   message: "Home Club and Away Club should be different",
+// });
 
 export const GoalSchema = z.object({
   minute: z.number(),

@@ -25,13 +25,19 @@ const SeasonGames = async ({
         clubOptions={<ClubOptions clubs={clubs} />}
       />
       <div className="mx-auto my-9 w-full self-center md:w-[48rem]">
-        <span>Round TBD/TBD</span>
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-left text-sm">
             <tbody className="text-black">
-              {games.map((game, index) => (
-                <GameRow key={index + 1} game={game} />
-              ))}
+              {games
+                .filter((game) =>
+                  !searchParams.clubId || searchParams.clubId === "all"
+                    ? true
+                    : game.homeClubId === searchParams.clubId ||
+                      game.awayClubId === searchParams.clubId,
+                )
+                .map((game, index) => (
+                  <GameRow key={index + 1} game={game} />
+                ))}
             </tbody>
           </table>
         </div>

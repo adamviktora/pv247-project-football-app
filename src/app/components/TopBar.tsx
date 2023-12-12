@@ -1,11 +1,12 @@
 "use client";
 
+import { useQueryState } from "next-usequerystate";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
+import { useMediaQuery } from "usehooks-ts";
 import ReturnButton from "./ReturnButton";
 import Select from "./Select";
-import { useMediaQuery } from "usehooks-ts";
 
 type TopBarProps = {
   leagueId?: string;
@@ -27,15 +28,23 @@ const TopBar = ({
   const router = useRouter();
   const pathname = usePathname();
 
-  const leaugeAndSeason = `leagueId=${leagueId}&seasonId=${seasonId}`;
+  const [seasonIdQueryParam, setSeasonIdQueryParam] = useQueryState("seasonId");
+  const [clubIdQueryParam, setClubIdQueryParam] = useQueryState("clubId");
+
+  const selectedSeasonId = seasonIdQueryParam ?? seasonId;
+  const selectedClubId = clubIdQueryParam ?? clubId;
+
+  const leagueAndSeason = `leagueId=${leagueId}&seasonId=${selectedSeasonId}`;
 
   return (
     <div className="flex w-full items-center justify-between bg-secondary-color px-12 py-2">
       <div className="flex w-72">
         <ReturnButton />
         <Select
-          selectedValue={seasonId}
+          selectedValue={selectedSeasonId}
           onChange={(e) => {
+            setSeasonIdQueryParam(e.target.value);
+            setClubIdQueryParam(null);
             router.replace(
               `${pathname}?leagueId=${leagueId}&seasonId=${e.target.value}&clubId=all`,
             );
@@ -50,7 +59,7 @@ const TopBar = ({
             className={`py-1 ${
               pathname === "/leaderboard" ? "underline" : ""
             } hover:underline `}
-            href={`/leaderboard?${leaugeAndSeason}`}
+            href={`/leaderboard?${leagueAndSeason}`}
           >
             Leaderboard
           </Link>
@@ -59,7 +68,8 @@ const TopBar = ({
               pathname === "/games" ? "underline" : ""
             } hover:underline `}
             href={
-              `/games?${leaugeAndSeason}` + (clubId ? `&clubId=${clubId}` : "")
+              `/games?${leagueAndSeason}` +
+              (selectedClubId ? `&clubId=${selectedClubId}` : "")
             }
           >
             Games
@@ -69,10 +79,11 @@ const TopBar = ({
       <div className="w-72">
         {pathname !== "/leaderboard" && (
           <Select
-            selectedValue={clubId}
+            selectedValue={selectedClubId}
             onChange={(e) => {
+              setClubIdQueryParam(e.target.value);
               router.replace(
-                `${pathname}?${leaugeAndSeason}&clubId=${e.target.value}`,
+                `${pathname}?${leagueAndSeason}&clubId=${e.target.value}`,
               );
             }}
           >

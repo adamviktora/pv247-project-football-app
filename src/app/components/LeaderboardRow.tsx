@@ -24,14 +24,18 @@ export const LeaderboardRow = ({
     clubSeason.goalsScoredCount - clubSeason.goalsReceivedCount;
 
   return (
-    <tr
-      className="h-8 border-b  odd:bg-white  even:bg-gray-200 hover:bg-gray-300 "
-      onClick={openClub}
-    >
+    <tr className="h-8 border-b  odd:bg-white  even:bg-gray-200 hover:bg-gray-300 ">
       <th className="text-md whitespace-nowrap px-1 text-center font-medium md:px-2 xl:px-6">
         {clubSeason.order}
       </th>
-      <td className="px-1 md:px-2 xl:px-6">{clubSeason.club.name}</td>
+      <td className="px-1 md:px-2 xl:px-6">
+        <span
+          className="hover:cursor-pointer hover:underline"
+          onClick={openClub}
+        >
+          {clubSeason.club.name}
+        </span>
+      </td>
       <TableCell content={clubSeason.gamesPlayedCount} />
       <TableCell content={clubSeason.gamesWonCount} />
       <TableCell content={clubSeason.gamesDrawnCount} />
