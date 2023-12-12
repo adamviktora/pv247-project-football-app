@@ -416,11 +416,93 @@ const ligue1Clubs: ClubCreation[] = [
   },
 ];
 
+const spanishClubs: ClubCreation[] = [
+  {
+    name: "Real Madrid",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "FC Barcelona",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/1200px-FC_Barcelona_%28crest%29.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Atletico Madrid",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Atletico_Madrid_2017_logo.svg/1200px-Atletico_Madrid_2017_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Sevilla FC",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Sevilla_FC_logo.svg/1200px-Sevilla_FC_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Valencia CF",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Valencia_CF.svg/1200px-Valencia_CF.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Real Sociedad",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/5/55/Real_Sociedad_logo.svg/1200px-Real_Sociedad_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Villarreal CF",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Villarreal_CF_logo.svg/1200px-Villarreal_CF_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Athletic Bilbao",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Athletic_Club_Bilbao_logo.svg/1200px-Athletic_Club_Bilbao_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Real Betis",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/4/43/Real_Betis_logo.svg/1200px-Real_Betis_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Celta Vigo",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/4/43/RC_Celta_de_Vigo_logo.svg/1200px-RC_Celta_de_Vigo_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Getafe CF",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/7/7f/Getafe_CF_logo.svg/1200px-Getafe_CF_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Eibar",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/2/2d/SD_Eibar_logo.svg/1200px-SD_Eibar_logo.svg.png",
+    countryCode: "ESP",
+  },
+  {
+    name: "Real Valladolid",
+    logoURL:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Real_Valladolid_Logo.svg/1200px-Real_Valladolid_Logo.svg.png",
+    countryCode: "ESP",
+  },
+];
+
 const allClubs: ClubCreation[] = [
   ...premierLeagueClubs,
   ...bundesligaClubs,
   ...serieAClubs,
   ...ligue1Clubs,
+  ...spanishClubs,
 ];
 
 export const createClubs = () => {
