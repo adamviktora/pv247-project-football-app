@@ -2,15 +2,13 @@
 
 import Input from "@/app/components/Input";
 import ReturnButton from "@/app/components/ReturnButton";
-import ClubOptions from "@/app/components/server-components/ClubOptions";
 import LeagueOptions from "@/app/components/server-components/LeagueOptions";
 import { add, getAll } from "@/fetch-helper/CRUD";
 import {
-  ClubCreation,
   ClubSeasonCreation,
   LeagueSeasonCreation,
 } from "@/types/creationTypes";
-import { ClubSeasonSchema, LeagueSeasonSchema } from "@/validators/schema";
+import { LeagueSeasonSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Club, ClubSeason, League, LeagueSeason } from "@prisma/client";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -83,9 +81,6 @@ const AddSeasonPage = () => {
       setTimeout(() => setErrorText(""), 3000);
       return;
     }
-    // TODO: Select teams
-    // Use list of teams ID to add them to league
-    // After selecting teams and clicking button, create ClubSeasons for each team
 
     selectedClubs.forEach((clubId) => {
       const newClubSeason: ClubSeasonCreation = {

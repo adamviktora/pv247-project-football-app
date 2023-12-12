@@ -1,3 +1,4 @@
+import { getServerAuthSession } from "@/server/auth";
 import {
   addGame,
   addGameWithGoals,
@@ -27,6 +28,14 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const status = await getServerAuthSession();
+  if (!status) {
+    return new Response(null, {
+      status: 401,
+      statusText: "Unauthorized",
+    });
+  }
+
   const game = (await req.json()) as GameCreation | GameWithGoalsCreation;
 
   const newGame =

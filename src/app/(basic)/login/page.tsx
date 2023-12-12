@@ -4,7 +4,9 @@ import Input from "@/app/components/Input";
 import { AdminLogin } from "@/types/creationTypes";
 import { AdminLoginSchema } from "@/validators/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const AdminLogin = () => {
@@ -14,11 +16,26 @@ const AdminLogin = () => {
     formState: { errors },
     reset,
   } = useForm<AdminLogin>({ resolver: zodResolver(AdminLoginSchema) });
-
+  const { data, status } = useSession();
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<AdminLogin> = (data) => {
+  if (data?.user) {
     router.push("/admin");
+  }
+
+  const [errorText, setErrorText] = useState("");
+
+  const onSubmit: SubmitHandler<AdminLogin> = async (data) => {
+    const result = await signIn("credentials", {
+      redirect: false,
+      ...data,
+    });
+
+    if (result?.error) {
+      setErrorText("Invalid credentials. Please try again.");
+      setTimeout(() => setErrorText(""), 3000);
+      console.error(result.error);
+    }
   };
 
   return (
@@ -49,6 +66,13 @@ const AdminLogin = () => {
             </button>
           </div>
         </form>
+        {errorText && (
+          <div className="toast toast-center mb-20">
+            <div className="alert border-0 bg-red-400 shadow-md">
+              <span>{errorText}</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

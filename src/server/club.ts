@@ -1,7 +1,6 @@
 import { ClubCreation } from "@/types/creationTypes";
-import { Club, Player, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Club, Player } from "@prisma/client";
+import { prisma } from "./prisma";
 
 type ClubDetails = Club & {
   players: Player[];

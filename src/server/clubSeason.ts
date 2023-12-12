@@ -2,15 +2,8 @@ import {
   ClubSeasonCreation,
   PlayerSeasonCreation,
 } from "@/types/creationTypes";
-import {
-  Club,
-  ClubSeason,
-  LeagueSeason,
-  Player,
-  PrismaClient,
-} from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Club, ClubSeason, LeagueSeason, Player } from "@prisma/client";
+import { prisma } from "./prisma";
 
 export type ClubSeasonWithClub = ClubSeason & { club: Club };
 export type ClubSeasonWithLeagueSeason = ClubSeason & {

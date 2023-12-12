@@ -1,7 +1,5 @@
 import { GoalCreation } from "@/types/creationTypes";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "./prisma";
 
 export const addGoal = async (goal: GoalCreation) => {
   const newGoal = await prisma.goal.create({
