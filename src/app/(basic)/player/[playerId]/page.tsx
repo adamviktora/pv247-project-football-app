@@ -6,11 +6,13 @@ import { calculateAge, formatDate } from "@/utils/date";
 import { LeagueSeason } from "@prisma/client";
 
 const PlayerDetail = async ({
+  params,
   searchParams,
 }: {
+  params: { playerId: string };
   searchParams: { playerId: string; seasonId?: string };
 }) => {
-  const player = await getPlayerById(searchParams.playerId);
+  const player = await getPlayerById(params.playerId);
 
   // Use last season if not provided
   if (searchParams.seasonId === undefined) {
